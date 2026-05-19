@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OG Image — Medical ANS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap');
+
+html, body { margin: 0; padding: 0; background: #fff; }
+.frame {
+  width: 1200px;
+  height: 630px;
+  position: relative;
+  overflow: hidden;
+  background: #0A1620;
+  color: #fff;
+  font-family: 'Geist', system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding: 64px 72px;
+  box-sizing: border-box;
+}
+
+/* Atmospheric gradient + network motif */
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 600px at 78% 38%, rgba(35, 181, 163, 0.18), transparent 60%),
+    radial-gradient(700px 500px at 12% 100%, rgba(14, 79, 110, 0.55), transparent 65%);
+  z-index: 0;
+}
+.bg-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  z-index: 0;
+}
+
+.row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Fraunces', serif;
+  font-variation-settings: "opsz" 36, "SOFT" 0, "wght" 500;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+.brand-mark {
+  width: 44px; height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+}
+.brand-sub {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #23B5A3;
+  border-left: 1px solid rgba(255,255,255,0.18);
+  padding-left: 14px;
+  margin-left: 6px;
+}
+
+.eyebrow {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #2BCFB8;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 28px;
+  height: 1.5px;
+  background: #2BCFB8;
+}
+
+.main {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.headline {
+  font-family: 'Fraunces', serif;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "wght" 420;
+  font-size: 96px;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  color: #fff;
+  max-width: 18ch;
+  margin: 24px 0 0;
+}
+.headline .dot { color: #2BCFB8; }
+.sub {
+  font-family: 'Geist', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.72);
+  margin: 28px 0 0;
+  max-width: 38ch;
+  letter-spacing: -0.005em;
+}
+
+.bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.partner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+.partner-badge .tri {
+  color: #2BCFB8;
+  font-size: 14px;
+  line-height: 1;
+}
+.partner-badge .sep {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+}
+.url {
+  font-family: 'Geist Mono', monospace;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+.url .arrow { color: #2BCFB8; margin-right: 8px; }
+
+/* Small stats strip */
+.stats {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 40px;
+  margin-top: 36px;
+}
+.stat .v {
+  font-family: 'Fraunces', serif;
+  font-variation-settings: "opsz" 96, "SOFT" 0, "wght" 400;
+  font-size: 44px;
+  color: #2BCFB8;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  display: inline-block;
+}
+.stat .v sup { font-size: 0.5em; color: rgba(255,255,255,0.5); top: -0.55em; margin-left: 0.1em; }
+.stat .l {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  display: block;
+  margin-top: 8px;
+}
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <svg class="bg-svg" viewBox="0 0 1200 630" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="#23B5A3" stroke-width="0.8" stroke-opacity="0.18" fill="none">
+      <path d="M80 120 L260 220 M260 220 L160 400 M260 220 L460 140 M460 140 L640 260 M640 260 L840 180 M840 180 L1040 100 M840 180 L1080 320 M640 260 L520 460 M520 460 L740 480 M740 480 L920 400 M160 400 L380 500 M380 500 L520 460 M460 140 L380 60 M1040 100 L1140 200 M1080 320 L1140 450"/>
+    </g>
+    <g>
+      <circle cx="80" cy="120" r="3.5" fill="#0E4F6E" opacity="0.7"/>
+      <circle cx="260" cy="220" r="4.5" fill="#23B5A3" opacity="0.9"/>
+      <circle cx="160" cy="400" r="3.5" fill="#0E4F6E" opacity="0.7"/>
+      <circle cx="460" cy="140" r="4" fill="#23B5A3" opacity="0.9"/>
+      <circle cx="640" cy="260" r="5" fill="#0E4F6E" opacity="0.85"/>
+      <circle cx="840" cy="180" r="4" fill="#23B5A3" opacity="0.9"/>
+      <circle cx="1040" cy="100" r="3.5" fill="#0E4F6E" opacity="0.7"/>
+      <circle cx="1080" cy="320" r="3.5" fill="#0E4F6E" opacity="0.7"/>
+      <circle cx="520" cy="460" r="4.5" fill="#23B5A3" opacity="0.9"/>
+      <circle cx="740" cy="480" r="3.5" fill="#0E4F6E" opacity="0.7"/>
+      <circle cx="920" cy="400" r="3.5" fill="#0E4F6E" opacity="0.7"/>
+      <circle cx="380" cy="500" r="3.5" fill="#0E4F6E" opacity="0.7"/>
+      <circle cx="380" cy="60" r="2.5" fill="#0E4F6E" opacity="0.55"/>
+      <circle cx="1140" cy="200" r="2.5" fill="#0E4F6E" opacity="0.55"/>
+      <circle cx="1140" cy="450" r="2.5" fill="#0E4F6E" opacity="0.55"/>
+    </g>
+  </svg>
+
+  <div class="row">
+    <div class="brand">
+      <span class="brand-mark">
+        <svg width="30" height="30" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 20.5 L6 8 L14 16 L22 8 L22 20.5" stroke="#23B5A3" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="6" cy="8" r="1.8" fill="#23B5A3"/>
+          <circle cx="14" cy="16" r="1.8" fill="#FFFFFF"/>
+          <circle cx="22" cy="8" r="1.8" fill="#23B5A3"/>
+        </svg>
+      </span>
+      Medical ANS
+      <span class="brand-sub">Advanced Network Solutions</span>
+    </div>
+  </div>
+
+  <div class="main">
+    <span class="eyebrow">Healthcare Networking · Est. 2014</span>
+    <h1 class="headline">The network healthcare runs on<span class="dot">.</span></h1>
+    <p class="sub">Secure, carrier-grade networks for hospitals, health systems, and specialty medical centers.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="v">99.99<sup>%</sup></span>
+        <span class="l">Median WAN availability</span>
+      </div>
+      <div class="stat">
+        <span class="v">90+</span>
+        <span class="l">Sites under management</span>
+      </div>
+      <div class="stat">
+        <span class="v">6,400</span>
+        <span class="l">Beds supported</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <span class="partner-badge"><span class="tri">▲</span> T-Mobile Solution Partner <span class="sep"></span> HIPAA-aligned <span class="sep"></span> SOC 2 readiness</span>
+    <span class="url"><span class="arrow">→</span>medicalans.com</span>
+  </div>
+
+</div>
+</body>
+</html>
