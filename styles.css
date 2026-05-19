@@ -380,13 +380,13 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
 .card p { font-size: 0.95rem; }
 .card .card-icon {
   width: 44px; height: 44px;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
   background: linear-gradient(135deg, var(--teal-500), var(--teal-700));
   color: #fff;
-  margin-bottom: 1.5rem;
+  margin: 0 auto 1.5rem;
 }
 .card .card-icon svg { width: 22px; height: 22px; }
 .card .card-link {
