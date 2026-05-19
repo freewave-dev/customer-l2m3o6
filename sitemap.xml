@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://medicalans.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://medicalans.com/about</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://medicalans.com/solutions</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://medicalans.com/solutions/security</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://medicalans.com/solutions/5g-private-cellular</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://medicalans.com/solutions/sd-wan</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://medicalans.com/solutions/iomt</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://medicalans.com/solutions/telehealth</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://medicalans.com/solutions/managed-services</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://medicalans.com/industries</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://medicalans.com/partners</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://medicalans.com/case-studies</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://medicalans.com/case-studies/regional-hospital-system</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://medicalans.com/case-studies/cancer-center-5g</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://medicalans.com/case-studies/outpatient-zero-trust</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://medicalans.com/resources</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://medicalans.com/compliance</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://medicalans.com/careers</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://medicalans.com/contact</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://medicalans.com/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://medicalans.com/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://medicalans.com/accessibility</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>
