@@ -1,7 +1,7 @@
 /* Medical ANS — design system
    Aesthetic: editorial healthcare × carrier-grade modernism */
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@400..600&display=swap');
 
 :root {
   --ink: #0A1620;
@@ -26,7 +26,7 @@
 
   --coral: #E76F51;
 
-  --display: 'Fraunces', 'Source Serif Pro', Georgia, serif;
+  --display: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --mono: 'Geist Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
@@ -63,17 +63,17 @@ body {
 /* ============ Typography ============ */
 h1, h2, h3, h4 {
   font-family: var(--display);
-  font-variation-settings: "opsz" 144, "SOFT" 0, "wght" 500;
+  font-weight: 700;
   color: var(--ink);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   line-height: 1.05;
   text-wrap: balance;
 }
 
-h1 { font-size: clamp(2.5rem, 6vw, 4.75rem); font-variation-settings: "opsz" 144, "SOFT" 0, "wght" 450; }
-h2 { font-size: clamp(2rem, 4.2vw, 3.25rem); font-variation-settings: "opsz" 96, "SOFT" 0, "wght" 500; }
-h3 { font-size: clamp(1.35rem, 2.2vw, 1.75rem); font-variation-settings: "opsz" 36, "SOFT" 0, "wght" 500; line-height: 1.2; }
-h4 { font-size: 1.125rem; font-family: var(--sans); font-weight: 600; letter-spacing: -0.005em; color: var(--ink); }
+h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -0.035em; }
+h2 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.032em; }
+h3 { font-size: clamp(1.3rem, 2.1vw, 1.65rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+h4 { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
 
 p { color: var(--slate-700); max-width: 64ch; }
 p.lead { font-size: 1.25rem; line-height: 1.5; color: var(--slate-900); max-width: 60ch; }
@@ -110,13 +110,15 @@ strong { color: var(--ink); font-weight: 600; }
 /* Pull quote */
 .pullquote {
   font-family: var(--display);
-  font-variation-settings: "opsz" 96, "SOFT" 0, "wght" 400, "ital" 1;
-  font-style: italic;
-  font-size: clamp(1.6rem, 3vw, 2.25rem);
-  line-height: 1.25;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  line-height: 1.3;
   color: var(--ink);
-  letter-spacing: -0.015em;
-  max-width: 30ch;
+  letter-spacing: -0.025em;
+  max-width: 32ch;
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--signal);
 }
 .pullquote-attr {
   font-family: var(--mono);
@@ -176,18 +178,19 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
   align-items: center;
   gap: 0.625rem;
   font-family: var(--display);
-  font-variation-settings: "opsz" 36, "SOFT" 0, "wght" 500;
-  font-size: 1.2rem;
-  letter-spacing: -0.015em;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
   color: var(--ink);
 }
 .brand:hover { color: var(--teal-700); }
 .brand-mark {
-  width: 28px; height: 28px;
-  display: inline-block;
-  position: relative;
+  width: 32px; height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
-.brand-mark svg { display: block; }
+.brand-mark img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .brand-sub {
   font-family: var(--mono);
   font-size: 0.65rem;
@@ -419,11 +422,11 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
 }
 .card-case .case-metric-value {
   font-family: var(--display);
-  font-variation-settings: "opsz" 144, "SOFT" 0, "wght" 400;
+  font-weight: 700;
   font-size: clamp(2.5rem, 4vw, 3.25rem);
   line-height: 1;
   color: var(--signal-bright);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
   font-variant-numeric: tabular-nums;
 }
 .card-case .case-metric-label {
@@ -464,10 +467,10 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
   align-items: center;
   justify-content: center;
   font-family: var(--display);
-  font-variation-settings: "opsz" 144, "SOFT" 0, "wght" 400;
-  font-size: 3.5rem;
-  color: rgba(255,255,255,0.85);
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-size: 2.75rem;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: -0.04em;
 }
 .card-leader h4 { font-size: 1.1rem; margin-bottom: 0.25rem; }
 .card-leader .leader-title {
@@ -519,10 +522,10 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
 .stats-grid > .stat:last-child { border-right: 0; }
 .stat-value {
   font-family: var(--display);
-  font-variation-settings: "opsz" 144, "SOFT" 0, "wght" 400;
+  font-weight: 700;
   font-size: clamp(2.5rem, 5vw, 3.75rem);
   color: var(--signal-bright);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
@@ -568,12 +571,11 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
 }
 .logo-item {
   font-family: var(--display);
-  font-variation-settings: "opsz" 36, "SOFT" 0, "wght" 500;
-  font-size: 1.1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
   color: var(--slate-500);
-  letter-spacing: -0.01em;
-  filter: grayscale(1);
-  opacity: 0.7;
+  letter-spacing: -0.005em;
+  opacity: 0.8;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
