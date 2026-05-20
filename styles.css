@@ -463,14 +463,9 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
   border-radius: 8px;
   background: linear-gradient(135deg, var(--teal-700), var(--signal-dim));
   margin-bottom: 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 2.75rem;
-  color: rgba(255,255,255,0.9);
-  letter-spacing: -0.04em;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
 }
 .card-leader h4 { font-size: 1.1rem; margin-bottom: 0.25rem; }
 .card-leader .leader-title {
