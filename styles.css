@@ -1025,6 +1025,23 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
   background: linear-gradient(180deg, rgba(10,22,32,0.5) 0%, rgba(10,22,32,0.15) 35%, rgba(10,22,32,0.15) 65%, rgba(10,22,32,0.55) 100%);
 }
 
+/* Generic in-content imagery band */
+.content-band {
+  height: clamp(220px, 32vw, 380px);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--ink);
+  position: relative;
+  padding: 0;
+  filter: saturate(0.85);
+}
+.content-band::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,22,32,0.4) 0%, rgba(10,22,32,0.1) 40%, rgba(10,22,32,0.1) 60%, rgba(10,22,32,0.45) 100%);
+}
+
 /* ============ Misc ============ */
 .tag {
   display: inline-block;
