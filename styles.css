@@ -1040,15 +1040,6 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
   border-radius: 999px;
   margin-bottom: 1.25rem;
 }
-.partner-feature-img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
-  background: var(--slate-100);
-  filter: saturate(0.92);
-}
 @media (max-width: 880px) { .partner-feature { grid-template-columns: 1fr; gap: 1.5rem; } }
 
 @media (prefers-reduced-motion: no-preference) {
