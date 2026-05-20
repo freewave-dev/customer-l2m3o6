@@ -1102,6 +1102,66 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
 }
 @media (max-width: 880px) { .partner-feature { grid-template-columns: 1fr; gap: 1.5rem; } .partner-feature-logo { margin-inline: auto; } }
 
+.vendor-logos {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--slate-100);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+.vendor-logos .vl-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.vendor-logos .vl-heading h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+.vendor-logos .vl-heading p {
+  font-size: 0.9rem;
+  color: var(--slate-700);
+  margin: 0;
+  max-width: 38ch;
+}
+.vendor-logos .vl-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  align-items: center;
+}
+.vendor-logos .vl-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  min-height: 56px;
+}
+.vendor-logos .vl-item img {
+  max-width: 100%;
+  max-height: 36px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.65;
+  transition: filter 0.25s var(--ease), opacity 0.25s var(--ease);
+}
+.vendor-logos .vl-item:hover img,
+.vendor-logos .vl-item:focus-within img {
+  filter: grayscale(0);
+  opacity: 1;
+}
+@media (max-width: 880px) {
+  .vendor-logos .vl-grid { grid-template-columns: repeat(3, 1fr); row-gap: 1.5rem; }
+}
+@media (max-width: 480px) {
+  .vendor-logos .vl-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .fade-in {
     opacity: 0;
