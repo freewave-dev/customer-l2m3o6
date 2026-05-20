@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Compliance & Security — Medical ANS</title>
-<meta name="description" content="HIPAA-aligned program with BAA available, HITRUST-aligned controls, SOC 2 Type II readiness, and 24×7 incident response with a named principal engineer.">
+<meta name="description" content="How Medical ANS approaches HIPAA-aligned network design, incident response, and the security baseline we build into every engagement.">
 <meta property="og:title" content="Compliance & Security — Medical ANS">
-<meta property="og:description" content="HIPAA-aligned program with BAA available, HITRUST-aligned controls, SOC 2 Type II readiness, and 24×7 incident response with a named principal engineer.">
+<meta property="og:description" content="How Medical ANS approaches HIPAA-aligned network design, incident response, and the security baseline we build into every engagement.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://medicalans.com/compliance">
 <meta property="og:image" content="https://media.freewave.dev/l2m3o6/images/og-image.webp">
@@ -15,7 +15,7 @@
 <meta property="og:image:alt" content="Medical ANS — The network healthcare runs on.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Compliance & Security — Medical ANS">
-<meta name="twitter:description" content="HIPAA-aligned program with BAA available, HITRUST-aligned controls, SOC 2 Type II readiness, and 24×7 incident response with a named principal engineer.">
+<meta name="twitter:description" content="How Medical ANS approaches HIPAA-aligned network design, incident response, and the security baseline we build into every engagement.">
 <meta name="twitter:image" content="https://media.freewave.dev/l2m3o6/images/og-image.webp">
 <link rel="canonical" href="https://medicalans.com/compliance">
 <link rel="icon" type="image/png" sizes="32x32" href="https://media.freewave.dev/l2m3o6/images/favicon-32.webp">
@@ -42,7 +42,7 @@
         <p class="breadcrumb"><a href="/">Home</a><span class="sep">/</span>Compliance &amp; security</p>
         <span class="section-label">Compliance &amp; security</span>
         <h1 style="margin-top: 1.25rem;">Reassurance that holds up under audit.</h1>
-        <p class="lead">Medical ANS operates as an extension of your security and compliance teams. Below is what we maintain, and what we make available to clients in writing.</p>
+        <p class="lead">Medical ANS designs and deploys network infrastructure intended to operate as an extension of your security and compliance teams. Below is the framework we work within and the security baseline we build into every engagement. Specific certification status is a function of program maturity — we say plainly where Medical ANS stands today.</p>
       </div>
       <div class="page-hero-visual">
         <img src="https://media.freewave.dev/l2m3o6/images/compliance-hero.webp" alt="" aria-hidden="true" loading="eager">
@@ -56,23 +56,23 @@
     <div class="grid grid-2">
       <article class="card">
         <span class="card-num">01 / HIPAA</span>
-        <h3>HIPAA-aligned program with BAA available.</h3>
-        <p>Our technical and administrative safeguards are mapped to HIPAA's network and security requirements. We sign Business Associate Agreements as part of every engagement, and our quarterly business reviews surface evidence-collection artifacts your auditors will want.</p>
+        <h3>We design to HIPAA-aligned practices.</h3>
+        <p>Our network and security architectures are designed to support a covered entity's HIPAA technical and administrative safeguards — segmentation, access control, audit logging, encryption-in-transit. We sign Business Associate Agreements where engagement scope requires it.</p>
       </article>
       <article class="card">
-        <span class="card-num">02 / HITRUST</span>
-        <h3>HITRUST-aligned controls.</h3>
-        <p>Our internal control set is aligned to the HITRUST CSF — particularly for managed-services clients who need to evidence vendor controls to their own auditors. Available on request.</p>
+        <span class="card-num">02 / HITRUST &amp; SOC 2</span>
+        <h3>Frameworks we work within.</h3>
+        <p>We reference HITRUST CSF control families and SOC 2 trust-services criteria when designing managed-services environments. Medical ANS itself is a new entity in 2026 — formal third-party attestations are not yet in place, and we don't claim them.</p>
       </article>
       <article class="card">
-        <span class="card-num">03 / SOC 2</span>
-        <h3>SOC 2 Type II readiness.</h3>
-        <p>We're in active SOC 2 Type II readiness, with a target attestation period closing in Q4. Letters from our auditor are available under NDA for clients in evaluation.</p>
+        <span class="card-num">03 / Carrier-grade baseline</span>
+        <h3>Built on T-Mobile's enterprise security posture.</h3>
+        <p>The 5G Advanced Network Solutions and SuperBroadband platforms we deploy inherit T-Mobile's underlying carrier security posture. We layer client-specific identity, segmentation, and policy on top.</p>
       </article>
       <article class="card">
         <span class="card-num">04 / Incident response</span>
-        <h3>24×7 incident response with named principal.</h3>
-        <p>Every managed-services engagement has a named principal engineer. Incident escalation is one phone number with a one-hop bridge to the engineers who designed your network — not a ticket queue.</p>
+        <h3>Founder-led escalation.</h3>
+        <p>Today, incident escalation goes directly to the founder. As the team grows, that path becomes a named principal model rather than a ticket queue. The principle stays: one accountable phone number.</p>
       </article>
     </div>
   </div>
@@ -85,17 +85,17 @@
         <span class="section-label">Network security practices</span>
         <h2 style="margin-top:1rem;">How we secure the networks we run.</h2>
       </div>
-      <p class="head-lede">Not aspirational — operational. Every client network we manage runs against this baseline.</p>
+      <p class="head-lede">The baseline we build into every network we design. Items below are design defaults, not features to negotiate.</p>
     </div>
     <ul class="checklist" style="max-width:64ch;">
-      <li>Zero-trust segmentation as the access-plane default, with identity-aware policy enforcement</li>
-      <li>Continuous device posture checks for managed endpoints and IoMT devices</li>
-      <li>Centralized logging tuned for HIPAA evidence collection, with SIEM integration</li>
-      <li>Carrier-grade DDoS protection at every internet edge</li>
-      <li>Encrypted-in-transit and encrypted-at-rest baselines on all network telemetry</li>
-      <li>Quarterly vulnerability and configuration audits, with remediation tracked in plain English</li>
-      <li>Network change management with clinically-aware change windows</li>
-      <li>Named incident-response runbooks per client, reviewed quarterly</li>
+      <li>Identity-first segmentation between clinical, IoT, guest, and vendor traffic</li>
+      <li>Device posture checks for managed endpoints and connected medical devices</li>
+      <li>Centralized logging structured for HIPAA evidence collection, with SIEM integration where the client runs one</li>
+      <li>Carrier-grade DDoS protection inherited from the T-Mobile enterprise edge</li>
+      <li>Encrypted-in-transit baselines on all network telemetry</li>
+      <li>Vulnerability and configuration review with remediation tracked in plain English</li>
+      <li>Change management that respects clinical workflows — no default 2 AM windows</li>
+      <li>Per-engagement incident response runbooks, reviewed on a regular cadence</li>
     </ul>
   </div>
 </section>
@@ -103,7 +103,7 @@
 <section>
   <div class="wrap">
     <div class="callout">
-      <p><strong>A note on language.</strong> We use "HIPAA-aligned," "HITRUST-aligned controls," and "SOC 2 readiness" deliberately. These are accurate descriptions of program state — not certifications. If a vendor tells you they're "HIPAA-certified," ask which certifying body issued it. There isn't one.</p>
+      <p><strong>A note on language.</strong> We use "HIPAA-aligned" to describe design practice, not certification. There is no HIPAA certifying body. If a vendor tells you they're "HIPAA-certified," ask who issued the certificate. Medical ANS is a new entity in 2026 and we are explicit about which formal attestations are and aren't in place today.</p>
     </div>
     <p style="margin-top:1.5rem;">For procurement, security questionnaires, or BAA requests, write to <a href="mailto:security@medicalans.com">security@medicalans.com</a>.</p>
   </div>
@@ -130,13 +130,13 @@
 <footer class="site-footer">
   <div class="wrap-wide">
     <div class="footer-grid">
-      <div class="footer-brand"><a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><img src="https://media.freewave.dev/l2m3o6/images/logo.webp" alt="Medical ANS logo" width="32" height="34"></span>Medical ANS<span class="brand-sub">Advanced Network Solutions</span></a><p>The network healthcare runs on. Designing, deploying, and managing secure network infrastructure for healthcare since 2014.</p></div>
+      <div class="footer-brand"><a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><img src="https://media.freewave.dev/l2m3o6/images/logo.webp" alt="Medical ANS logo" width="32" height="34"></span>Medical ANS<span class="brand-sub">Advanced Network Solutions</span></a><p>The network healthcare runs on. A T-Mobile Solution Partner bringing 5G Advanced Network Solutions and SuperBroadband to healthcare facilities. Founded 2026.</p></div>
       <div class="footer-col"><h5>Solutions</h5><ul><li><a href="/solutions/security">Secure connectivity</a></li><li><a href="/solutions/5g-private-cellular">5G &amp; private cellular</a></li><li><a href="/solutions/sd-wan">SD-WAN</a></li><li><a href="/solutions/iomt">IoMT enablement</a></li><li><a href="/solutions/telehealth">Telehealth</a></li><li><a href="/solutions/managed-services">Managed services</a></li></ul></div>
       <div class="footer-col"><h5>Company</h5><ul><li><a href="/about">About</a></li><li><a href="/industries">Industries</a></li><li><a href="/case-studies">Case studies</a></li><li><a href="/partners">Partners</a></li><li><a href="/careers">Careers</a></li></ul></div>
       <div class="footer-col"><h5>Resources</h5><ul><li><a href="/resources">Whitepapers &amp; insights</a></li><li><a href="/compliance">Compliance &amp; security</a></li><li><a href="/contact">Contact</a></li></ul></div>
       <div class="footer-col"><h5>Legal</h5><ul><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li><li><a href="/accessibility">Accessibility</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© Medical ANS · medicalans.com</span><div class="footer-badges"><span>HIPAA-aligned</span><span>HITRUST-aligned controls</span><span>SOC 2 readiness</span><span>BAA available</span></div></div>
+    <div class="footer-bottom"><span>© Medical ANS · medicalans.com</span></div>
   </div>
 </footer>
 
