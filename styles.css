@@ -355,18 +355,10 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
   max-width: 380px;
   height: auto;
   filter: drop-shadow(0 24px 48px rgba(11, 62, 82, 0.22));
-  animation: hero-mark-float 7s ease-in-out infinite;
-}
-@keyframes hero-mark-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
 }
 @media (max-width: 880px) {
   .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
   .hero-mark img { max-width: 220px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-mark img { animation: none; }
 }
 
 /* ============ Sections ============ */

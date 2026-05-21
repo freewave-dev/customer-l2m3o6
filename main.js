@@ -112,8 +112,15 @@
       var spend = parseInt(spendEl.value, 10) || 0;
       if (sitesLabel) sitesLabel.textContent = sites + (sites === 1 ? ' site' : ' sites');
       if (spendLabel) spendLabel.textContent = fmt(spend) + ' / month';
-      var lowAnnual = spend * 12 * 0.20;
-      var highAnnual = spend * 12 * 0.35;
+      // More sites = more carrier-consolidation opportunity. Single site is
+      // mostly circuit right-sizing (10-15%). At ~25+ sites, the full
+      // industry-typical consolidation range applies (20-35%). The curve
+      // ramps smoothly in between.
+      var consolidationFactor = Math.min(1, sites / 25);
+      var lowPercent = 0.10 + (0.10 * consolidationFactor);   // 10% → 20%
+      var highPercent = 0.15 + (0.20 * consolidationFactor);  // 15% → 35%
+      var lowAnnual = spend * 12 * lowPercent;
+      var highAnnual = spend * 12 * highPercent;
       var twoYearLow = lowAnnual * 2 * 0.85;
       var twoYearHigh = highAnnual * 2 * 0.95;
       if (lowOut) lowOut.textContent = fmt(twoYearLow);
