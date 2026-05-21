@@ -1162,6 +1162,181 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
   .vendor-logos .vl-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* ============ Editorial practice cards (solutions page) ============ */
+.practice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+.practice-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow-2);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  border: 1px solid var(--slate-100);
+}
+.practice-card:hover,
+.practice-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-3);
+  outline: none;
+}
+.practice-card .pc-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--ink);
+}
+.practice-card .pc-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s var(--ease);
+  filter: saturate(0.9) contrast(1.02);
+}
+.practice-card:hover .pc-media img,
+.practice-card:focus-visible .pc-media img {
+  transform: scale(1.04);
+}
+.practice-card .pc-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 22, 32, 0) 45%, rgba(10, 22, 32, 0.55) 80%, rgba(10, 22, 32, 0.85) 100%);
+  pointer-events: none;
+}
+.practice-card .pc-number {
+  position: absolute;
+  bottom: 1.1rem;
+  left: 1.5rem;
+  z-index: 1;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--signal-bright);
+}
+.practice-card .pc-body {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  flex: 1;
+}
+.practice-card .pc-body h3 {
+  margin: 0;
+  font-size: clamp(1.3rem, 2vw, 1.55rem);
+  color: var(--ink);
+  line-height: 1.2;
+}
+.practice-card .pc-body p {
+  margin: 0;
+  color: var(--slate-700);
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+.practice-card .pc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.1rem;
+}
+.practice-card .pc-tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--teal-500);
+  background: var(--mist);
+  padding: 0.32rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--slate-100);
+}
+.practice-card .pc-link {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--teal-500);
+  font-weight: 600;
+  padding-top: 1rem;
+  border-top: 1px solid var(--slate-100);
+  text-transform: uppercase;
+}
+.practice-card .pc-link::after {
+  content: "→";
+  font-family: var(--display);
+  font-size: 1rem;
+  transition: transform 0.25s var(--ease);
+}
+.practice-card:hover .pc-link::after,
+.practice-card:focus-visible .pc-link::after {
+  transform: translateX(4px);
+}
+@media (max-width: 880px) {
+  .practice-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* ============ Home solutions snapshot — simplified typographic list ============ */
+.home-solutions-snapshot {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--slate-200);
+}
+.home-solutions-snapshot a {
+  display: block;
+  padding: 1.5rem 1.25rem;
+  text-decoration: none;
+  border-bottom: 1px solid var(--slate-200);
+  border-right: 1px solid var(--slate-200);
+  transition: background 0.2s var(--ease);
+}
+.home-solutions-snapshot a:nth-child(2n) { border-right: none; }
+.home-solutions-snapshot a:hover { background: #fff; }
+.home-solutions-snapshot .hs-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal-500);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.home-solutions-snapshot h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.home-solutions-snapshot p {
+  margin: 0.45rem 0 0;
+  color: var(--slate-700);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.home-solutions-snapshot .hs-arrow {
+  display: inline-block;
+  margin-left: 0.4rem;
+  color: var(--teal-500);
+  transition: transform 0.25s var(--ease);
+}
+.home-solutions-snapshot a:hover .hs-arrow {
+  transform: translateX(4px);
+}
+@media (max-width: 720px) {
+  .home-solutions-snapshot { grid-template-columns: 1fr; }
+  .home-solutions-snapshot a { border-right: none; }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .fade-in {
     opacity: 0;
