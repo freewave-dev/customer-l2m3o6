@@ -338,6 +338,36 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
   margin-bottom: 2.25rem;
 }
 .hero-actions { display: flex; gap: 0.875rem; flex-wrap: wrap; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: center;
+}
+.hero-mark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.hero-mark img {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  filter: drop-shadow(0 24px 48px rgba(11, 62, 82, 0.22));
+  animation: hero-mark-float 7s ease-in-out infinite;
+}
+@keyframes hero-mark-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@media (max-width: 880px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-mark img { max-width: 220px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-mark img { animation: none; }
+}
 
 /* ============ Sections ============ */
 .section-head {
