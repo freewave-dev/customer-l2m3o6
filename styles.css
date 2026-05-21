@@ -1337,6 +1337,53 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
   .home-solutions-snapshot a { border-right: none; }
 }
 
+/* ============ Diagram reveal-on-scroll ============ */
+.diagram-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+}
+.diagram-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .diagram-reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ============ Metric strip (e.g. case-study references) ============ */
+.metric-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--slate-100);
+  border-bottom: 1px solid var(--slate-100);
+}
+.metric-strip .ms-item .ms-value {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1;
+  display: block;
+}
+.metric-strip .ms-item .ms-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate-700);
+  margin-top: 0.5rem;
+  display: block;
+  line-height: 1.4;
+}
+@media (max-width: 640px) {
+  .metric-strip { grid-template-columns: 1fr; gap: 1rem; }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .fade-in {
     opacity: 0;
