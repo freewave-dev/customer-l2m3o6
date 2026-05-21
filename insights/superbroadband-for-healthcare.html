@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why SuperBroadband changes the multi-site healthcare conversation — Medical ANS</title>
+<meta name="description" content="A founder-written take on T-Mobile SuperBroadband — 5G + Starlink in a single managed circuit — and why it changes the &quot;real diverse second leg&quot; conversation for ambulatory networks and LTC operators.">
+<meta property="og:title" content="Why SuperBroadband changes the multi-site healthcare conversation">
+<meta property="og:description" content="A founder-written take on T-Mobile SuperBroadband — 5G + Starlink in a single managed circuit — and why it changes the diverse second-leg conversation for ambulatory networks and LTC operators.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://medicalans.com/insights/superbroadband-for-healthcare">
+<meta property="og:image" content="https://media.freewave.dev/l2m3o6/images/og/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Medical ANS — The network healthcare runs on.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why SuperBroadband changes the multi-site healthcare conversation">
+<meta name="twitter:description" content="A founder-written take on T-Mobile SuperBroadband and the multi-site diverse-leg problem.">
+<meta name="twitter:image" content="https://media.freewave.dev/l2m3o6/images/og/og-home.png">
+<link rel="canonical" href="https://medicalans.com/insights/superbroadband-for-healthcare">
+<link rel="icon" type="image/png" sizes="32x32" href="https://media.freewave.dev/l2m3o6/images/favicon-32.webp">
+<link rel="icon" type="image/png" sizes="96x96" href="https://media.freewave.dev/l2m3o6/images/favicon-96.webp">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/styles.css">
+<style>
+  .insight-body { max-width: 68ch; margin: 0 auto; }
+  .insight-body p { margin: 0 0 1.25rem; font-size: 1.075rem; line-height: 1.7; color: var(--slate-900); }
+  .insight-body h2 { margin: 2.5rem 0 1rem; font-size: clamp(1.5rem, 2.2vw, 1.85rem); letter-spacing: -0.02em; }
+  .insight-body h3 { margin: 2rem 0 0.75rem; font-size: 1.2rem; letter-spacing: -0.01em; }
+  .insight-body blockquote { margin: 1.5rem 0; padding: 0.25rem 0 0.25rem 1.25rem; border-left: 3px solid var(--signal); font-family: var(--display); font-size: 1.2rem; font-weight: 500; color: var(--ink); line-height: 1.45; }
+  .insight-body strong { color: var(--ink); }
+  .insight-meta { display:flex; gap:1rem; flex-wrap:wrap; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate-500); margin-top: 1rem; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="nav-bar">
+  <div class="nav-inner">
+    <a href="/" class="brand" aria-label="Medical ANS — Home"><span class="brand-mark" aria-hidden="true"><img src="https://media.freewave.dev/l2m3o6/images/logo.webp" alt="Medical ANS logo" width="32" height="34"></span>Medical ANS<span class="brand-sub">Advanced Network Solutions</span></a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    <nav><ul class="nav-links"><li><a href="/solutions">Solutions</a></li><li><a href="/industries">Industries</a></li><li><a href="/case-studies">Case studies</a></li><li><a href="/partners">Partners</a></li><li><a href="/about">About</a></li><li><a href="/resources">Resources</a></li><li><a href="/contact" class="nav-cta">Request consultation</a></li></ul></nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="page-hero" style="padding-bottom: clamp(2rem, 4vw, 3rem);">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/">Home</a><span class="sep">/</span><a href="/insights">Insights</a><span class="sep">/</span>SuperBroadband for healthcare</p>
+    <span class="section-label">Insight 01 · Connectivity</span>
+    <h1 style="margin-top: 1.25rem; max-width: 28ch;">Why SuperBroadband changes the multi-site healthcare conversation.</h1>
+    <div class="insight-meta">
+      <span>By Philip Emanuele</span>
+      <span>·</span>
+      <span>Founder analysis</span>
+      <span>·</span>
+      <span>~6 min read</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="insight-body">
+      <p>Multi-site healthcare has been quietly papered over with bad answers to the same question for fifteen years. The question: <em>where does your secondary path actually come from?</em></p>
+
+      <p>You can read it in a hundred different IT audit findings, all phrased nearly the same way. <em>Primary fiber from Vendor A. Secondary "broadband" from Vendor B. Last failover test: unverified, six months ago.</em> Sometimes worse — the secondary path is the same vendor's metro fiber on a different conduit, which everyone knows isn't actually diverse the moment a backhoe finds the wrong duct bank.</p>
+
+      <p>The reason this persists isn't engineering stubbornness. It's economics. Provisioning two truly diverse wireline circuits to a 20-clinic ambulatory network is expensive, takes nine to eighteen months, and locks the architecture to whoever happens to have last-mile presence at each address. So the project gets descoped. The audit finding stays open. Everyone moves on.</p>
+
+      <h2>What changed</h2>
+
+      <p>T-Mobile's <strong>SuperBroadband</strong> product, by their own description, combines enterprise 5G with Starlink satellite in a single managed service — one contract, one bill, one box, two paths. Two operational modes: automatic failover, or load-balance for resilience by construction.</p>
+
+      <blockquote>"Speeds vary due to local network characteristics and management." That's the honest line buried in the marketing. It matters because it tells you what you actually got.</blockquote>
+
+      <p>From the architecture side, what you got is this: a single CPE that simultaneously holds a 5G PDP session and a Starlink LEO session. The two paths are <em>physically uncorrelated</em> in a way that two wireline paths never are. A backhoe doesn't take out a satellite constellation. A regional cellular tower outage doesn't dim the sky overhead. For the first time, the "real diverse second leg" line on the architecture diagram corresponds to two actually-independent failure domains.</p>
+
+      <p>For a single large hospital, that's nice but not transformative — most large hospitals already have engineering budget for proper carrier diversity. For an <strong>ambulatory network with 30 to 60 clinics</strong>, or a <strong>long-term care operator with 15 facilities across three states</strong>, or a <strong>behavioral health practice running telehealth-first intake from 22 sites</strong>, this is the first economically rational answer the industry has produced.</p>
+
+      <h2>The reason it took this long</h2>
+
+      <p>Two underlying things had to be true before this was possible.</p>
+
+      <p>First, 5G fixed wireless had to actually deliver enterprise-grade performance. Five years ago, "5G fixed wireless" meant a high-mounted modem that sometimes did 50 Mbps if the weather was right. Today, on T-Mobile's published numbers, you can plan a multi-site rollout around it as a primary path with confidence — not a "backup" path you hope never to need.</p>
+
+      <p>Second, Starlink had to mature to managed-service grade. The early Starlink RV / residential offering wasn't something you'd put under a healthcare SLA. The current Business and Enterprise tiers — and now, importantly, the wholesale relationship that lets T-Mobile bundle Starlink into a single contract — are.</p>
+
+      <p>The technology was incremental on both sides. The <em>packaging</em> is what changed. A single managed contract, with one carrier holding both sides of the diversity story, eliminates the procurement friction that kept this option off the table.</p>
+
+      <h2>What it changes about an SD-WAN design</h2>
+
+      <p>Healthcare SD-WAN architectures over the last decade have been heavily shaped by underlay economics. Three patterns dominated:</p>
+
+      <h3>1. MPLS-with-broadband-failover</h3>
+      <p>The default for hospital systems with the budget. Reliable, expensive, slow to change. Provisioning lead times in months. Often locks the architecture to the MPLS carrier's coverage map.</p>
+
+      <h3>2. Dual broadband from different carriers</h3>
+      <p>The ambulatory default. Cheaper, but secondary "diversity" depends on whether the two carriers actually have separate physical paths. They often don't. Audit findings live here.</p>
+
+      <h3>3. 4G/LTE failover</h3>
+      <p>The pragmatic compromise. Works for keeping a clinic alive during a wireline outage, but throughput drops to a level that's noticeable in clinical workflow — and in many practice environments, audit posture isn't satisfied by a "best effort" backup.</p>
+
+      <p>SuperBroadband is the first option that genuinely improves on all three at once. The 5G side is good enough to be a primary path. The Starlink side is uncorrelated enough to be a real secondary. The single-contract packaging removes the procurement reason these conversations stalled. And the per-site cost — T-Mobile's published starting price is $250/mo on a 36-month commitment — is in the same neighborhood as a single wireline circuit, while delivering the diversity of two.</p>
+
+      <h2>Where it doesn't fit</h2>
+
+      <p>Honest caveats, because this isn't a press release.</p>
+
+      <p><strong>If your site has line-of-sight obstructions to the satellite arc</strong> — heavy tree canopy in the right direction, an adjacent tall building, certain rural mountain valleys — Starlink's contribution drops. The 5G side carries proportionally more, which is fine but is no longer truly hybrid.</p>
+
+      <p><strong>If you need symmetric, deterministic latency to a specific cloud region</strong> — say, for a contact-center workload sensitive to one-way latency to a US-East PoP — the satellite path's variable jitter shows up. Load-balance mode is less appealing; automatic-failover mode is the right configuration.</p>
+
+      <p><strong>If your security posture requires private MPLS endpoints all the way into a specific cloud</strong> — most healthcare environments don't, but some do — SuperBroadband sits at the public-internet edge. You'd still need a separate connectivity story for the deep-private case.</p>
+
+      <p>And finally: this is a relatively new product. T-Mobile's published reference list of healthcare deployments is short. The Boston Children's 5G ANS work is well-documented and adjacent; SuperBroadband-specific multi-site references are still being built. The conservative read is "promising, validate at one site before committing the fleet." That's the read we'd give a client.</p>
+
+      <h2>The honest summary</h2>
+
+      <p>For the first time in fifteen years of multi-site healthcare networking, the "real diverse second leg" line on the architecture diagram has a managed, contractable, financially reasonable answer behind it. That doesn't mean SuperBroadband is the answer for every site. It means the conversation finally moves from "we can't afford to do it right" to "let's pick which sites this fits and pilot." That's a substantial change in what's available to design with.</p>
+
+      <p>If you're running a multi-site healthcare network and the secondary-path question keeps coming up in audits or steering meetings, this is the option to evaluate. Anchor on a single-site pilot. Validate the failover behavior with the workloads that actually matter to clinical operations. Then decide whether to roll it across the rest.</p>
+
+      <p>That's the kind of engagement Medical ANS is built for. If you want to walk through it against your environment, <a href="/contact">the first call is a 30-minute working session</a>.</p>
+
+      <hr style="margin: 3rem 0; border:none; border-top: 1px solid var(--slate-200);">
+
+      <p style="font-size: 0.85rem; color: var(--slate-700);"><strong>Sources &amp; references:</strong> T-Mobile SuperBroadband product page — <a href="https://www.t-mobile.com/business/business-internet/superbroadband" target="_blank" rel="noopener">t-mobile.com/business/business-internet/superbroadband</a>. T-Mobile 5G ANS / Boston Children's deployment story — <a href="https://www.t-mobile.com/news/business/healthcares-first-5g-hybrid-network" target="_blank" rel="noopener">t-mobile.com</a>, Sept 2023. Cato Networks customer story (Fullerton Health) referenced on our <a href="/case-studies">industry references</a> page.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div class="cta-band-inner">
+      <div>
+        <span class="section-label" style="color:var(--signal-bright);">Next step</span>
+        <h2 style="margin-top:1rem;">Run this against your environment.</h2>
+        <p>The fastest test of any architectural option is putting it next to your actual carrier bill, site list, and audit findings. That's where the assessment starts.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="/contact" class="btn btn-on-dark btn-primary">Request a consultation</a>
+        <a href="/solutions/sd-wan" class="btn btn-on-dark btn-secondary">SD-WAN practice detail</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><img src="https://media.freewave.dev/l2m3o6/images/logo.webp" alt="Medical ANS logo" width="32" height="34"></span>Medical ANS<span class="brand-sub">Advanced Network Solutions</span></a><p>The network healthcare runs on. A T-Mobile Solution Partner bringing 5G Advanced Network Solutions and SuperBroadband to healthcare facilities. Founded 2026.</p></div>
+      <div class="footer-col"><h5>Solutions</h5><ul><li><a href="/solutions/security">Secure connectivity</a></li><li><a href="/solutions/5g-private-cellular">5G &amp; private cellular</a></li><li><a href="/solutions/sd-wan">SD-WAN</a></li><li><a href="/solutions/iomt">IoMT enablement</a></li><li><a href="/solutions/telehealth">Telehealth</a></li><li><a href="/solutions/managed-services">Managed services</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="/why">Why Medical ANS</a></li><li><a href="/about">About</a></li><li><a href="/industries">Industries</a></li><li><a href="/case-studies">Case studies</a></li><li><a href="/partners">Partners</a></li><li><a href="/careers">Careers</a></li></ul></div>
+      <div class="footer-col"><h5>Resources</h5><ul><li><a href="/insights">Insights</a></li><li><a href="/resources">Whitepapers &amp; reading</a></li><li><a href="/compliance">Compliance &amp; security</a></li><li><a href="/contact">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Legal</h5><ul><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li><li><a href="/accessibility">Accessibility</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© Medical ANS · medicalans.com</span></div>
+  </div>
+</footer>
+
+<script src="/main.js"></script>
+</body>
+</html>

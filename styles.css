@@ -1314,6 +1314,17 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
 @media (max-width: 880px) {
   .practice-grid { grid-template-columns: 1fr; gap: 1.5rem; }
 }
+.practice-card.span-2 {
+  grid-column: 1 / -1;
+}
+@media (min-width: 881px) {
+  .practice-card.span-2 {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: stretch;
+  }
+  .practice-card.span-2 .pc-media { aspect-ratio: auto; height: 100%; min-height: 320px; }
+}
 
 /* ============ Home solutions snapshot — simplified typographic list ============ */
 .home-solutions-snapshot {
