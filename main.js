@@ -152,6 +152,26 @@
     });
   }
 
+  // Reading progress bar (driven by .read-progress markup in insights posts)
+  var progFill = document.querySelector('.read-progress-fill');
+  if (progFill) {
+    var ticking = false;
+    function updateProgress() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+      progFill.style.width = Math.min(100, Math.max(0, pct)) + '%';
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(updateProgress);
+        ticking = true;
+      }
+    }, { passive: true });
+    updateProgress();
+  }
+
   // Section rail scroll-spy
   var railLinks = document.querySelectorAll('.section-rail a');
   if (railLinks.length && 'IntersectionObserver' in window) {

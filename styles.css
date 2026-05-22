@@ -45,6 +45,17 @@
 
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
+/* Cross-page view transitions (Chrome 111+, Safari 18+, Firefox 134+).
+   Browsers without support quietly ignore this — falls back to instant nav. */
+@view-transition { navigation: auto; }
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+}
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+
 body {
   font-family: var(--sans);
   font-feature-settings: 'ss01', 'cv11';
@@ -1385,6 +1396,135 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
 @media (max-width: 720px) {
   .home-solutions-snapshot { grid-template-columns: 1fr; }
   .home-solutions-snapshot a { border-right: none; }
+}
+
+/* ============ Reading progress bar (insights posts) ============ */
+.read-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  background: transparent;
+  pointer-events: none;
+}
+.read-progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--signal), var(--teal-500));
+  transition: width 0.1s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .read-progress-fill { transition: none; }
+}
+
+/* ============ T-Mobile partner badge subtle pulse ============ */
+.partner-feature .pf-badge {
+  animation: badge-pulse 6.5s ease-in-out infinite;
+}
+@keyframes badge-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(43, 207, 184, 0); }
+  40%      { box-shadow: 0 0 0 6px rgba(43, 207, 184, 0.18); }
+  60%      { box-shadow: 0 0 0 12px rgba(43, 207, 184, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .partner-feature .pf-badge { animation: none; }
+}
+
+/* ============ Vendor logo marquee (partners page) ============ */
+.vl-marquee {
+  display: flex;
+  overflow: hidden;
+  gap: 0;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.vl-marquee-track {
+  display: flex;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: center;
+  padding-right: clamp(2.5rem, 5vw, 4rem);
+  animation: vl-scroll 36s linear infinite;
+  flex-shrink: 0;
+}
+.vl-marquee:hover .vl-marquee-track,
+.vl-marquee:focus-within .vl-marquee-track {
+  animation-play-state: paused;
+}
+.vl-marquee-track img {
+  height: 32px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.65;
+  transition: filter 0.25s var(--ease), opacity 0.25s var(--ease);
+}
+.vl-marquee-track img:hover {
+  filter: grayscale(0);
+  opacity: 1;
+}
+@keyframes vl-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vl-marquee-track { animation: none; }
+}
+
+/* ============ Home three-pillars rework — typographic, no icons ============ */
+.pillar-card {
+  background: #fff;
+  border: 1px solid var(--slate-100);
+  border-radius: 14px;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.pillar-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-2);
+  border-color: var(--slate-200);
+}
+.pillar-card .pillar-num {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(3.5rem, 6vw, 5.25rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: transparent;
+  background: linear-gradient(135deg, var(--teal-700) 0%, var(--signal) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.25rem;
+}
+.pillar-card .pillar-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.pillar-card h3 {
+  margin: 0 0 0.85rem;
+  font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+  color: var(--ink);
+}
+.pillar-card p {
+  margin: 0;
+  color: var(--slate-700);
+  flex: 1;
+}
+.pillar-card .card-link {
+  margin-top: 1.25rem;
 }
 
 /* ============ Hero / page-hero H1 gradient ============ */
