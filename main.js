@@ -131,4 +131,45 @@
     if (spendEl) spendEl.addEventListener('input', recompute);
     recompute();
   }
+
+  // Practice-card tilt (mouse-follow micro-parallax). Skip on touch and reduced-motion.
+  var isTouch = 'ontouchstart' in window || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+  if (!prefersReduced && !isTouch) {
+    document.querySelectorAll('.practice-card').forEach(function (card) {
+      card.addEventListener('mouseenter', function () { card.classList.add('is-tilting'); });
+      card.addEventListener('mousemove', function (e) {
+        var rect = card.getBoundingClientRect();
+        var px = (e.clientX - rect.left) / rect.width - 0.5;
+        var py = (e.clientY - rect.top) / rect.height - 0.5;
+        var rotX = (-py * 4).toFixed(2);
+        var rotY = (px * 4).toFixed(2);
+        card.style.transform = 'translateY(-4px) perspective(900px) rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg)';
+      });
+      card.addEventListener('mouseleave', function () {
+        card.classList.remove('is-tilting');
+        card.style.transform = '';
+      });
+    });
+  }
+
+  // Section rail scroll-spy
+  var railLinks = document.querySelectorAll('.section-rail a');
+  if (railLinks.length && 'IntersectionObserver' in window) {
+    var railTargets = [];
+    railLinks.forEach(function (a) {
+      var t = document.querySelector(a.getAttribute('href'));
+      if (t) railTargets.push({ link: a, el: t });
+    });
+    var railObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.id;
+          railLinks.forEach(function (a) {
+            a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-30% 0px -55% 0px' });
+    railTargets.forEach(function (t) { railObs.observe(t.el); });
+  }
 })();

@@ -45,6 +45,14 @@
 
 <main id="main">
 
+<nav class="section-rail" aria-label="On this page">
+  <a href="#what-changed"><span class="sr-num">01</span>What changed</a>
+  <a href="#why-now"><span class="sr-num">02</span>Why now</a>
+  <a href="#sd-wan-impact"><span class="sr-num">03</span>SD-WAN impact</a>
+  <a href="#caveats"><span class="sr-num">04</span>Caveats</a>
+  <a href="#summary"><span class="sr-num">05</span>Summary</a>
+</nav>
+
 <section class="page-hero" style="padding-bottom: clamp(2rem, 4vw, 3rem);">
   <div class="wrap">
     <p class="breadcrumb"><a href="/">Home</a><span class="sep">/</span><a href="/insights">Insights</a><span class="sep">/</span>SuperBroadband for healthcare</p>
@@ -69,7 +77,7 @@
 
       <p>The reason this persists isn't engineering stubbornness. It's economics. Provisioning two truly diverse wireline circuits to a 20-clinic ambulatory network is expensive, takes nine to eighteen months, and locks the architecture to whoever happens to have last-mile presence at each address. So the project gets descoped. The audit finding stays open. Everyone moves on.</p>
 
-      <h2>What changed</h2>
+      <h2 id="what-changed">What changed</h2>
 
       <p>T-Mobile's <strong>SuperBroadband</strong> product, by their own description, combines enterprise 5G with Starlink satellite in a single managed service — one contract, one bill, one box, two paths. Two operational modes: automatic failover, or load-balance for resilience by construction.</p>
 
@@ -79,7 +87,7 @@
 
       <p>For a single large hospital, that's nice but not transformative — most large hospitals already have engineering budget for proper carrier diversity. For an <strong>ambulatory network with 30 to 60 clinics</strong>, or a <strong>long-term care operator with 15 facilities across three states</strong>, or a <strong>behavioral health practice running telehealth-first intake from 22 sites</strong>, this is the first economically rational answer the industry has produced.</p>
 
-      <h2>The reason it took this long</h2>
+      <h2 id="why-now">The reason it took this long</h2>
 
       <p>Two underlying things had to be true before this was possible.</p>
 
@@ -89,7 +97,7 @@
 
       <p>The technology was incremental on both sides. The <em>packaging</em> is what changed. A single managed contract, with one carrier holding both sides of the diversity story, eliminates the procurement friction that kept this option off the table.</p>
 
-      <h2>What it changes about an SD-WAN design</h2>
+      <h2 id="sd-wan-impact">What it changes about an SD-WAN design</h2>
 
       <p>Healthcare SD-WAN architectures over the last decade have been heavily shaped by underlay economics. Three patterns dominated:</p>
 
@@ -104,7 +112,7 @@
 
       <p>SuperBroadband is the first option that genuinely improves on all three at once. The 5G side is good enough to be a primary path. The Starlink side is uncorrelated enough to be a real secondary. The single-contract packaging removes the procurement reason these conversations stalled. And the per-site cost — T-Mobile's published starting price is $250/mo on a 36-month commitment — is in the same neighborhood as a single wireline circuit, while delivering the diversity of two.</p>
 
-      <h2>Where it doesn't fit</h2>
+      <h2 id="caveats">Where it doesn't fit</h2>
 
       <p>Honest caveats, because this isn't a press release.</p>
 
@@ -116,7 +124,7 @@
 
       <p>And finally: this is a relatively new product. T-Mobile's published reference list of healthcare deployments is short. The Boston Children's 5G ANS work is well-documented and adjacent; SuperBroadband-specific multi-site references are still being built. The conservative read is "promising, validate at one site before committing the fleet." That's the read we'd give a client.</p>
 
-      <h2>The honest summary</h2>
+      <h2 id="summary">The honest summary</h2>
 
       <p>For the first time in fifteen years of multi-site healthcare networking, the "real diverse second leg" line on the architecture diagram has a managed, contractable, financially reasonable answer behind it. That doesn't mean SuperBroadband is the answer for every site. It means the conversation finally moves from "we can't afford to do it right" to "let's pick which sites this fits and pilot." That's a substantial change in what's available to design with.</p>
 

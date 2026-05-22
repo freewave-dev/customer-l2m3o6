@@ -211,15 +211,31 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
 }
 .nav-links li { margin: 0; padding: 0; }
 .nav-links a {
+  position: relative;
   display: inline-flex;
   padding: 0.5rem 0.875rem;
   font-size: 0.92rem;
   font-weight: 500;
   color: var(--slate-700);
   border-radius: 6px;
-  transition: all 0.18s var(--ease);
+  transition: color 0.18s var(--ease), background 0.18s var(--ease);
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0.875rem;
+  right: 0.875rem;
+  bottom: 0.3rem;
+  height: 1.5px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.28s var(--ease);
 }
 .nav-links a:hover { color: var(--ink); background: var(--slate-50); }
+.nav-links a:hover::after,
+.nav-links a.is-active::after { transform: scaleX(1); }
+.nav-links a.nav-cta::after { display: none; }
 .nav-links a.is-active { color: var(--teal-700); }
 
 .nav-cta {
@@ -1369,6 +1385,76 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
 @media (max-width: 720px) {
   .home-solutions-snapshot { grid-template-columns: 1fr; }
   .home-solutions-snapshot a { border-right: none; }
+}
+
+/* ============ Hero / page-hero H1 gradient ============ */
+.hero h1,
+.page-hero h1 {
+  background: linear-gradient(120deg, var(--ink) 0%, var(--ink) 40%, var(--teal-700) 75%, var(--signal) 105%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+/* Restore solid text on dark backgrounds in case any hero gets re-skinned */
+.dark-band .hero h1,
+.dark-band .page-hero h1 {
+  background: none;
+  -webkit-text-fill-color: #fff;
+  color: #fff;
+}
+
+/* ============ Section rail (sticky scroll-spy on long pages) ============ */
+.section-rail {
+  position: fixed;
+  left: clamp(1rem, 2.5vw, 2.25rem);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  z-index: 5;
+  pointer-events: auto;
+}
+.section-rail a {
+  display: block;
+  padding: 0.45rem 0 0.45rem 0.85rem;
+  border-left: 2px solid var(--slate-200);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+  text-decoration: none;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease), padding-left 0.25s var(--ease);
+  line-height: 1.25;
+}
+.section-rail a:hover,
+.section-rail a.is-active {
+  color: var(--ink);
+  border-left-color: var(--signal);
+  padding-left: 1rem;
+}
+.section-rail a .sr-num {
+  display: block;
+  color: var(--teal-500);
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+@media (max-width: 1280px) {
+  .section-rail { display: none; }
+}
+
+/* ============ Practice-card tilt prep ============ */
+.practice-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.practice-card.is-tilting {
+  transition: transform 0.08s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .practice-card.is-tilting { transition: none; }
 }
 
 /* ============ Diagram reveal-on-scroll ============ */
