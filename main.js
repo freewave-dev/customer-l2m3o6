@@ -27,16 +27,35 @@
     }
   });
 
-  // Contact form — friendly stub (no backend yet; will be wired to /customer-form.php)
+  // Contact form — posts to central /customer-form.php; emails customer via Resend.
   var form = document.querySelector('form[data-contact]');
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var success = form.querySelector('[data-success]');
-      var fields = form.querySelectorAll('input, select, textarea, button');
-      fields.forEach(function (f) { f.disabled = true; });
-      if (success) success.hidden = false;
-      form.querySelectorAll('.field').forEach(function (f) { f.style.opacity = '0.45'; });
+      var submitBtn = form.querySelector('button[type="submit"]');
+      var fd = new FormData(form);
+      fd.append('_form_type', 'Contact Form');
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+      fetch(form.action, { method: 'POST', body: fd })
+        .then(function (r) { return r.json().catch(function () { return { success: r.ok }; }); })
+        .then(function (d) {
+          if (d && d.success) {
+            var fields = form.querySelectorAll('input, select, textarea, button');
+            fields.forEach(function (f) { f.disabled = true; });
+            if (success) success.hidden = false;
+            form.querySelectorAll('.field').forEach(function (f) {
+              if (!f.hasAttribute('data-success')) f.style.opacity = '0.45';
+            });
+          } else {
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send to solutions engineering'; }
+            alert((d && d.error) || 'Sorry — we couldn\'t send that. Please try again or email info@medicalans.com.');
+          }
+        })
+        .catch(function () {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send to solutions engineering'; }
+          alert('Sorry — we couldn\'t reach the server. Please try again or email info@medicalans.com.');
+        });
     });
   }
 
