@@ -45,6 +45,10 @@
 
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
+/* The hidden attribute must always win — component display rules
+   (e.g. .field { display:flex }) would otherwise override it. */
+[hidden] { display: none !important; }
+
 /* Cross-page view transitions (Chrome 111+, Safari 18+, Firefox 134+).
    Browsers without support quietly ignore this — falls back to instant nav. */
 @view-transition { navigation: auto; }
@@ -913,6 +917,15 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
 .dark-band .checklist li { color: rgba(255,255,255,0.78); }
 
 /* ============ Form ============ */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+}
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

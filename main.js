@@ -30,12 +30,23 @@
   // Contact form — posts to central /customer-form.php; emails customer via Resend.
   var form = document.querySelector('form[data-contact]');
   if (form) {
+    var successBox = form.querySelector('[data-success]');
+    var errorBox = form.querySelector('[data-error]');
+    var errorText = form.querySelector('[data-error-text]');
+    var showFormError = function (msg) {
+      if (errorBox) {
+        if (errorText && msg) errorText.textContent = msg;
+        errorBox.hidden = false;
+        if (errorBox.scrollIntoView) errorBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        alert(msg || 'Sorry — we couldn\'t send that. Please try again or email info@medicalans.com.');
+      }
+    };
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var success = form.querySelector('[data-success]');
       var submitBtn = form.querySelector('button[type="submit"]');
       var fd = new FormData(form);
-      fd.append('_form_type', 'Contact Form');
+      if (errorBox) errorBox.hidden = true;
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
       fetch(form.action, { method: 'POST', body: fd })
         .then(function (r) { return r.json().catch(function () { return { success: r.ok }; }); })
@@ -43,18 +54,21 @@
           if (d && d.success) {
             var fields = form.querySelectorAll('input, select, textarea, button');
             fields.forEach(function (f) { f.disabled = true; });
-            if (success) success.hidden = false;
             form.querySelectorAll('.field').forEach(function (f) {
               if (!f.hasAttribute('data-success')) f.style.opacity = '0.45';
             });
+            if (successBox) {
+              successBox.hidden = false;
+              if (successBox.scrollIntoView) successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
           } else {
             if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send to solutions engineering'; }
-            alert((d && d.error) || 'Sorry — we couldn\'t send that. Please try again or email info@medicalans.com.');
+            showFormError((d && d.error) || 'Something went wrong on our end');
           }
         })
         .catch(function () {
           if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send to solutions engineering'; }
-          alert('Sorry — we couldn\'t reach the server. Please try again or email info@medicalans.com.');
+          showFormError('We couldn\'t reach the server');
         });
     });
   }

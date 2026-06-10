@@ -43,7 +43,7 @@
         <p class="breadcrumb"><a href="/">Home</a><span class="sep">/</span>Contact</p>
         <span class="section-label">Request a consultation</span>
         <h1 style="margin-top: 1.25rem;">Let's design your network.</h1>
-        <p class="lead">A Medical ANS solutions engineer typically responds within one business day. Initial calls are 30 minutes — no slides, no decks, just working questions about your environment.</p>
+        <p class="lead">A Medical ANS engineer typically responds within one business day. Initial calls are 30 minutes — no slides, no decks, just working questions about your environment.</p>
       </div>
       <div class="page-hero-visual">
         <img src="https://media.freewave.dev/l2m3o6/images/contact-hero.webp" alt="" aria-hidden="true" loading="eager">
@@ -54,9 +54,9 @@
 
 <section style="padding-top: 1.5rem;">
   <div class="wrap-narrow">
-    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:3rem;align-items:start;">
+    <div class="contact-layout">
       <form data-contact action="https://freewave.dev/customer-form.php?id=e69aa9677175a7a8" method="post" novalidate>
-        <input type="hidden" name="_form_type" value="contact-form">
+        <input type="hidden" name="_form_type" value="Contact Form">
         <div class="form-grid">
           <div class="field"><label for="name">Full name</label><input id="name" name="name" type="text" required autocomplete="name"></div>
           <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
@@ -97,8 +97,12 @@
           <div class="field field-full" style="margin-top:0.5rem;">
             <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send to solutions engineering</button>
           </div>
-          <div class="field field-full" data-success hidden style="background:rgba(35,181,163,0.08);border:1px solid var(--signal);border-radius:8px;padding:1rem 1.25rem;">
-            <strong>Got it.</strong> A Medical ANS solutions engineer will be in touch within one business day. If it's urgent, call <a href="tel:+13212220889">(321) 222-0889</a>.
+          <div class="field field-full" data-success hidden role="status" style="background:rgba(35,181,163,0.08);border:1px solid var(--signal);border-radius:8px;padding:1.1rem 1.25rem;flex-direction:row;gap:0.85rem;align-items:flex-start;">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" style="flex-shrink:0;margin-top:0.1rem;"><circle cx="11" cy="11" r="10" fill="var(--signal)"/><path d="M6.5 11.5l3 3 6-6.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            <p style="margin:0;"><strong>Request received.</strong> A Medical ANS engineer will be in touch within one business day. If it's urgent, call <a href="tel:+13212220889">(321) 222-0889</a>.</p>
+          </div>
+          <div class="field field-full" data-error hidden role="alert" style="background:rgba(231,111,81,0.08);border:1px solid var(--coral);border-radius:8px;padding:1.1rem 1.25rem;">
+            <p style="margin:0;"><strong>That didn't go through.</strong> <span data-error-text>Please try again</span> — or email <a href="mailto:info@medicalans.com">info@medicalans.com</a> / call <a href="tel:+13212220889">(321) 222-0889</a>.</p>
           </div>
         </div>
       </form>
