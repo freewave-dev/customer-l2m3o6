@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medical ANS — The network healthcare runs on. (Design preview)</title>
+<meta name="description" content="Design preview — Medical ANS designs, deploys, and manages advanced network infrastructure for hospitals and health systems.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="https://media.freewave.dev/l2m3o6/images/favicon-32.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/v2/styles.css">
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/v2/" class="nav-brand" aria-label="Medical ANS — Home">
+      <img src="https://media.freewave.dev/l2m3o6/images/logo.webp" alt="" width="26" height="28">
+      <span class="nav-brand-name">Medical&nbsp;ANS</span>
+      <span class="nav-brand-sub">Advanced Network Solutions</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/solutions">Solutions</a>
+      <a href="/industries">Industries</a>
+      <a href="/case-studies">Case studies</a>
+      <a href="/partners">Partners</a>
+      <a href="/about">About</a>
+    </nav>
+    <div class="nav-right">
+      <span class="nav-status" aria-hidden="true"><span class="status-dot"></span>NOC&nbsp;· operational</span>
+      <a href="/contact" class="btn btn-sm btn-light">Request consultation</a>
+    </div>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile">
+    <a href="/solutions">Solutions</a>
+    <a href="/industries">Industries</a>
+    <a href="/case-studies">Case studies</a>
+    <a href="/partners">Partners</a>
+    <a href="/about">About</a>
+    <a href="/contact" class="btn btn-light" style="margin-top:.75rem;">Request consultation</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <canvas id="net" class="hero-net" aria-hidden="true"></canvas>
+  <div class="hero-grid-lines" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow rv">
+        <span class="eyebrow-tick" aria-hidden="true"></span>
+        T-Mobile Solution Partner · Healthcare Network Engineering
+      </p>
+      <h1 class="rv d1">The network<br>healthcare <em>runs on.</em></h1>
+      <p class="hero-sub rv d2">We design, deploy, and manage secure network infrastructure for hospitals, health systems, and specialty medical centers — engineered to outperform legacy stacks at a fraction of the operating cost.</p>
+      <div class="hero-actions rv d3">
+        <a href="/contact" class="btn btn-primary">Request a consultation<span class="btn-arrow" aria-hidden="true">→</span></a>
+        <a href="/solutions" class="btn btn-ghost-dark">Explore the six practices</a>
+      </div>
+    </div>
+
+    <aside class="console rv d2" aria-label="Illustrative network telemetry">
+      <div class="console-head">
+        <span class="console-title">MEDICALANS / NOC·01</span>
+        <span class="console-live"><span class="status-dot"></span>LIVE</span>
+      </div>
+      <div class="console-body">
+        <div class="console-row">
+          <span class="c-key">PRIMARY LINK</span>
+          <span class="c-val">T-Mobile 5G ANS</span>
+          <span class="c-state c-ok">ACTIVE</span>
+        </div>
+        <div class="console-meter" aria-hidden="true"><span class="console-meter-fill" style="--w:86%"></span></div>
+        <div class="console-row">
+          <span class="c-key">SECOND LEG</span>
+          <span class="c-val">Starlink · SuperBroadband</span>
+          <span class="c-state c-standby">STANDBY</span>
+        </div>
+        <div class="console-meter" aria-hidden="true"><span class="console-meter-fill dim" style="--w:34%"></span></div>
+        <div class="console-split">
+          <div>
+            <span class="c-key">LATENCY</span>
+            <span class="c-big"><span id="lat">12</span><small>ms</small></span>
+          </div>
+          <div>
+            <span class="c-key">UPTIME / 90D</span>
+            <span class="c-big">99.99<small>%</small></span>
+          </div>
+          <div>
+            <span class="c-key">SEGMENTS</span>
+            <span class="c-big">3<small>isolated</small></span>
+          </div>
+        </div>
+        <div class="console-row">
+          <span class="c-key">CLINICAL / IoMT / GUEST</span>
+          <span class="c-state c-ok">ZERO-TRUST ENFORCED</span>
+        </div>
+        <div class="console-foot">
+          <span class="c-cursor" aria-hidden="true">▌</span> monitored 24×7 by one accountable team
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="hero-marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>T-Mobile Solution Partner</span><i>·</i>
+      <span>Intelisys / ScanSource sub-agent</span><i>·</i>
+      <span>Hyperion Partners</span><i>·</i>
+      <span>5G Advanced Network Solutions</span><i>·</i>
+      <span>SuperBroadband — 5G + Starlink</span><i>·</i>
+      <span>HIPAA-aligned architecture</span><i>·</i>
+      <span>T-Mobile Solution Partner</span><i>·</i>
+      <span>Intelisys / ScanSource sub-agent</span><i>·</i>
+      <span>Hyperion Partners</span><i>·</i>
+      <span>5G Advanced Network Solutions</span><i>·</i>
+      <span>SuperBroadband — 5G + Starlink</span><i>·</i>
+      <span>HIPAA-aligned architecture</span><i>·</i>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PILLARS ===== -->
+<section class="band band-paper">
+  <div class="wrap">
+    <header class="sec-head rv">
+      <span class="sec-index">01</span>
+      <div>
+        <p class="sec-label">The promise</p>
+        <h2>Three outcomes.<br><em>No compromise.</em></h2>
+      </div>
+      <p class="sec-lede">Most hospital networks were sized for a different era. We rebuild them around the three things clinical leaders refuse to trade.</p>
+    </header>
+
+    <div class="pillars">
+      <article class="pillar rv">
+        <span class="pillar-num" aria-hidden="true">01</span>
+        <h3>Increased security</h3>
+        <p>Zero-trust architecture, clinical/IoT/guest segmentation, HIPAA-aligned controls, continuous monitoring, and carrier-grade DDoS protection — engineered for environments where uptime is a patient-safety issue.</p>
+        <a class="tlink" href="/solutions/security">Explore the security stack<span aria-hidden="true">→</span></a>
+      </article>
+      <article class="pillar rv d1">
+        <span class="pillar-num" aria-hidden="true">02</span>
+        <h3>Expanded capability</h3>
+        <p>5G fixed wireless and private cellular, SD-WAN, edge compute, IoMT enablement, telehealth-grade QoS, and resilient multi-site connectivity — the modern capabilities your clinical roadmap actually needs.</p>
+        <a class="tlink" href="/solutions">Browse solutions<span aria-hidden="true">→</span></a>
+      </article>
+      <article class="pillar rv d2">
+        <span class="pillar-num" aria-hidden="true">03</span>
+        <h3>Lower total cost</h3>
+        <p>Carrier consolidation, circuit optimization, managed services that replace in-house overhead, and measurable per-bed and per-site cost reductions — auditable, every quarter.</p>
+        <a class="tlink" href="/solutions/managed-services">See managed services<span aria-hidden="true">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOLUTIONS INDEX ===== -->
+<section class="band band-paper band-flush-top">
+  <div class="wrap">
+    <header class="sec-head rv">
+      <span class="sec-index">02</span>
+      <div>
+        <p class="sec-label">Solutions</p>
+        <h2>Six practices.<br><em>One accountable team.</em></h2>
+      </div>
+      <p class="sec-lede">Each runs as a complete service line. Adopt one, adopt all six — the engagement model is the same.</p>
+    </header>
+
+    <div class="sol-index rv">
+      <a class="sol-row" href="/solutions/security">
+        <span class="sol-num">P·01</span>
+        <span class="sol-name">Secure connectivity &amp; zero trust</span>
+        <span class="sol-desc">Identity-first segmentation, continuous verification, HIPAA-aligned access controls.</span>
+        <span class="sol-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="sol-row" href="/solutions/5g-private-cellular">
+        <span class="sol-num">P·02</span>
+        <span class="sol-name">5G &amp; private cellular</span>
+        <span class="sol-desc">T-Mobile 5G ANS, fixed wireless, private 5G and CBRS for clinical environments.</span>
+        <span class="sol-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="sol-row" href="/solutions/sd-wan">
+        <span class="sol-num">P·03</span>
+        <span class="sol-name">SD-WAN &amp; multi-site</span>
+        <span class="sol-desc">Application-aware routing on SuperBroadband — 5G + Starlink as a real second leg.</span>
+        <span class="sol-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="sol-row" href="/solutions/iomt">
+        <span class="sol-num">P·04</span>
+        <span class="sol-name">IoMT &amp; medical devices</span>
+        <span class="sol-desc">Discovery, classification, and risk-based segmentation for connected medical fleets.</span>
+        <span class="sol-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="sol-row" href="/solutions/telehealth">
+        <span class="sol-num">P·05</span>
+        <span class="sol-name">Telehealth &amp; clinical comms</span>
+        <span class="sol-desc">QoS engineered for sub-150ms clinical video and unified communications.</span>
+        <span class="sol-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="sol-row" href="/solutions/managed-services">
+        <span class="sol-num">P·06</span>
+        <span class="sol-name">Managed network services</span>
+        <span class="sol-desc">24×7 NOC, security operations, and quarterly review under one accountable team.</span>
+        <span class="sol-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== T-MOBILE PARTNER (dark) ===== -->
+<section class="band band-ink tmo-band">
+  <div class="wrap">
+    <div class="tmo-grid">
+      <div class="rv">
+        <span class="tmo-badge"><span class="tmo-t" aria-hidden="true">T</span>T-Mobile · Solution Partner</span>
+        <h2 class="on-dark">Carrier-grade engineering,<br><em>available by default.</em></h2>
+        <p class="on-dark-p">Our T-Mobile partnership gives Medical ANS clients direct access to T-Mobile's healthcare solution engineering team, joint deployment review, and eligibility for managed 5G and private cellular services normally reserved for the largest enterprises.</p>
+        <a href="/partners" class="btn btn-ghost-light" style="margin-top:2rem;">How the partnership works<span class="btn-arrow" aria-hidden="true">→</span></a>
+      </div>
+      <figure class="proof rv d1">
+        <blockquote>"Wi-Fi only extends within hospital walls and offers limited bandwidth — think about supporting <em>thousands</em> rather than hundreds of devices."</blockquote>
+        <figcaption>
+          <strong>Heather Nelson</strong> — SVP &amp; CIO, Boston Children's Hospital<br>
+          <span>on deploying T-Mobile 5G ANS — healthcare's first 5G hybrid network <a href="https://www.t-mobile.com/news/business/healthcares-first-5g-hybrid-network" target="_blank" rel="noopener">(via T-Mobile, 2023)</a></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="band band-paper">
+  <div class="wrap">
+    <header class="sec-head rv">
+      <span class="sec-index">03</span>
+      <div>
+        <p class="sec-label">What we bring</p>
+        <h2>Two decades of telecom,<br><em>pointed at healthcare.</em></h2>
+      </div>
+    </header>
+    <div class="stats rv">
+      <div class="stat">
+        <span class="stat-val"><span data-count="20">0</span>+</span>
+        <span class="stat-key">Years of founder experience in telecom, connectivity, and infrastructure</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">5G</span>
+        <span class="stat-key">T-Mobile Advanced Network Solutions — production-grade for clinical environments</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">2×</span>
+        <span class="stat-key">SuperBroadband: 5G + Starlink, with failover or load-balance by design</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">1</span>
+        <span class="stat-key">Accountable partner — designed, deployed, and managed end-to-end</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ENVIRONMENT IMAGE ===== -->
+<section class="env" aria-hidden="true">
+  <img src="https://media.freewave.dev/l2m3o6/images/hospital.webp" alt="" loading="lazy">
+  <div class="env-cap">
+    <span class="sec-label on-dark-label">Field of work</span>
+    <p>Hospitals, health systems, and specialty medical centers — environments where the network is a patient-safety system.</p>
+  </div>
+</section>
+
+<!-- ===== FOUNDER ===== -->
+<section class="band band-paper">
+  <div class="wrap">
+    <div class="founder-grid">
+      <div class="rv">
+        <span class="sec-index">04</span>
+        <p class="sec-label">About Medical ANS</p>
+        <h2>Founder-led.<br><em>Partnership-anchored.</em></h2>
+      </div>
+      <div class="rv d1">
+        <p class="lead">Medical ANS is led by Philip Emanuele — twenty years across telecom, connectivity, and infrastructure, with cross-industry experience spanning medical offices, education, and enterprise environments.</p>
+        <p style="margin-top:1.25rem;">After a session at T-Mobile's Executive Briefing Center, the opportunity was clear: bring T-Mobile's 5G Advanced Network Solutions and SuperBroadband — production-validated platforms — to the healthcare facilities that need them.</p>
+        <a class="tlink" href="/about" style="margin-top:1.75rem;">Read the founder story<span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="band band-ink cta">
+  <canvas id="net2" class="cta-net" aria-hidden="true"></canvas>
+  <div class="wrap cta-inner rv">
+    <p class="sec-label on-dark-label">Next step</p>
+    <h2 class="on-dark cta-h">Let's design<br><em>your network.</em></h2>
+    <p class="on-dark-p" style="margin:1.5rem auto 0;max-width:46ch;">Tell us what you're running today. We'll come back with a 30-minute assessment call and a written summary of where we'd start.</p>
+    <div class="cta-actions">
+      <a href="/contact" class="btn btn-primary btn-lg">Request a consultation<span class="btn-arrow" aria-hidden="true">→</span></a>
+      <a href="/partners" class="btn btn-ghost-light btn-lg">The T-Mobile partnership</a>
+    </div>
+    <p class="cta-foot">MEDICALANS.COM · NOC 24×7 · RESPONSE &lt; 1 BUSINESS DAY</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/v2/" class="nav-brand">
+          <img src="https://media.freewave.dev/l2m3o6/images/logo.webp" alt="" width="26" height="28">
+          <span class="nav-brand-name">Medical&nbsp;ANS</span>
+        </a>
+        <p>The network healthcare runs on. A T-Mobile Solution Partner bringing 5G Advanced Network Solutions and SuperBroadband to healthcare facilities. Founded 2026.</p>
+      </div>
+      <nav class="footer-col" aria-label="Solutions">
+        <h5>Solutions</h5>
+        <a href="/solutions/security">Secure connectivity</a>
+        <a href="/solutions/5g-private-cellular">5G &amp; private cellular</a>
+        <a href="/solutions/sd-wan">SD-WAN</a>
+        <a href="/solutions/iomt">IoMT enablement</a>
+        <a href="/solutions/telehealth">Telehealth</a>
+        <a href="/solutions/managed-services">Managed services</a>
+      </nav>
+      <nav class="footer-col" aria-label="Company">
+        <h5>Company</h5>
+        <a href="/why">Why Medical ANS</a>
+        <a href="/about">About</a>
+        <a href="/industries">Industries</a>
+        <a href="/case-studies">Case studies</a>
+        <a href="/partners">Partners</a>
+        <a href="/careers">Careers</a>
+      </nav>
+      <nav class="footer-col" aria-label="Resources">
+        <h5>Resources</h5>
+        <a href="/insights">Insights</a>
+        <a href="/resources">Whitepapers</a>
+        <a href="/compliance">Compliance</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <nav class="footer-col" aria-label="Legal">
+        <h5>Legal</h5>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/accessibility">Accessibility</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© Medical ANS · medicalans.com</span>
+      <span class="footer-noc"><span class="status-dot"></span>NOC · all systems operational</span>
+    </div>
+  </div>
+</footer>
+
+<a href="/" class="preview-pill" title="Back to the current live site">DESIGN PREVIEW · V2 — view current site</a>
+
+<script src="/v2/main.js"></script>
+</body>
+</html>
