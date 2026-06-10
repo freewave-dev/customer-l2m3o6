@@ -337,7 +337,7 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
 /* ============ Hero ============ */
 .hero {
   position: relative;
-  padding: clamp(5rem, 9vw, 8rem) 0 clamp(4rem, 7vw, 6rem);
+  padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(4rem, 7vw, 6rem);
   overflow: hidden;
   background: var(--paper);
 }
