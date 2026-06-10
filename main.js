@@ -61,104 +61,246 @@
 
   var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Hero background — live network topology canvas.
-  // Drifting nodes, proximity edges, packets traveling between linked nodes.
-  // Light-theme palette; pauses off-screen; static single frame on reduced-motion.
+  // Hero background — self-healing mesh network.
+  // A redundant mesh carries continuous multi-hop traffic. Every few seconds
+  // one node fails (coral): its links drop and in-flight packets visibly
+  // reroute around the break. Moments later the node is repaired (teal ring)
+  // and links re-establish. Efficiency + resilience, on loop.
+  // Pauses off-screen; renders one static frame under prefers-reduced-motion.
   (function () {
     var canvas = document.getElementById('hero-net');
     if (!canvas || !canvas.getContext) return;
     var ctx = canvas.getContext('2d');
     var dpr = Math.min(2, window.devicePixelRatio || 1);
-    var W = 0, H = 0, nodes = [], packets = [], running = false, rafId = null;
-    var LINK_DIST = 180;
+
+    var INK = '14, 79, 110';     // healthy links and nodes
+    var TEAL = '35, 181, 163';   // traffic, reroutes, repairs
+    var CORAL = '231, 111, 81';  // failures (--coral)
+
+    var W = 0, H = 0, frame = 0;
+    var nodes = [], edges = [], adj = [], packets = [], rings = [];
+    var downIdx = -1, repairFrame = 0, nextFailFrame = 0;
+    var running = false, rafId = null;
+
+    function buildMesh() {
+      nodes = []; edges = []; adj = []; packets = []; rings = [];
+      downIdx = -1; nextFailFrame = frame + 300;
+      // jittered grid keeps coverage even; jitter keeps it organic
+      var spacing = 175;
+      var cols = Math.max(3, Math.round(W / spacing));
+      var rows = Math.max(3, Math.round(H / spacing));
+      var cw = W / cols, ch = H / rows;
+      var i, j;
+      for (i = 0; i < rows; i++) {
+        for (j = 0; j < cols; j++) {
+          nodes.push({
+            x0: (j + 0.5) * cw + (Math.random() - 0.5) * cw * 0.55,
+            y0: (i + 0.5) * ch + (Math.random() - 0.5) * ch * 0.55,
+            x: 0, y: 0,
+            phase: Math.random() * 6.283,
+            r: 1.6 + Math.random() * 1.3,
+            down: false, failFrame: -1e9, repairFrame: -1e9
+          });
+        }
+      }
+      // each node links to its 3 nearest neighbours → multiple paths everywhere
+      var seen = {};
+      adj = nodes.map(function () { return []; });
+      for (i = 0; i < nodes.length; i++) {
+        var d = [];
+        for (j = 0; j < nodes.length; j++) {
+          if (i === j) continue;
+          var dx = nodes[i].x0 - nodes[j].x0, dy = nodes[i].y0 - nodes[j].y0;
+          d.push([dx * dx + dy * dy, j]);
+        }
+        d.sort(function (a, b) { return a[0] - b[0]; });
+        for (var k = 0; k < 3 && k < d.length; k++) {
+          var lo = Math.min(i, d[k][1]), hi = Math.max(i, d[k][1]);
+          if (!seen[lo + '-' + hi]) {
+            seen[lo + '-' + hi] = true;
+            edges.push([lo, hi]);
+            adj[lo].push(hi); adj[hi].push(lo);
+          }
+        }
+      }
+      wobble();
+    }
+
+    function wobble() {
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        n.x = n.x0 + Math.sin(frame * 0.006 + n.phase) * 4;
+        n.y = n.y0 + Math.cos(frame * 0.005 + n.phase * 1.7) * 4;
+      }
+    }
+
+    // BFS shortest path that avoids down nodes — the "routing protocol"
+    function findPath(src, dst) {
+      if (nodes[src].down || nodes[dst].down) return null;
+      var prev = [], i;
+      for (i = 0; i < nodes.length; i++) prev.push(-1);
+      var q = [src]; prev[src] = src;
+      while (q.length) {
+        var cur = q.shift();
+        if (cur === dst) break;
+        for (i = 0; i < adj[cur].length; i++) {
+          var nx = adj[cur][i];
+          if (prev[nx] === -1 && !nodes[nx].down) { prev[nx] = cur; q.push(nx); }
+        }
+      }
+      if (prev[dst] === -1) return null;
+      var path = [dst];
+      while (path[0] !== src) path.unshift(prev[path[0]]);
+      return path;
+    }
+
+    function spawnPacket() {
+      var src = Math.floor(Math.random() * nodes.length);
+      var dst = Math.floor(Math.random() * nodes.length);
+      if (src === dst || nodes[src].down || nodes[dst].down) return;
+      var path = findPath(src, dst);
+      if (path && path.length >= 3) {
+        packets.push({
+          x: nodes[src].x, y: nodes[src].y,
+          last: src, queue: path.slice(1), flash: 0
+        });
+      }
+    }
+
+    function ring(x, y, color, max) {
+      rings.push({ x: x, y: y, start: frame, color: color, max: max });
+    }
+
+    // Link opacity factor contributed by one endpoint: fades out fast on
+    // failure, fades back in after repair.
+    function linkMult(n) {
+      if (n.down) return Math.max(0.12, 1 - (frame - n.failFrame) / 25);
+      return Math.min(1, (frame - n.repairFrame) / 50);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      frame++;
+      wobble();
+
+      // ── failure / repair scheduler — one break at a time
+      if (downIdx === -1 && frame >= nextFailFrame) {
+        var pick = -1, tries = 0;
+        do { pick = Math.floor(Math.random() * nodes.length); tries++; }
+        while (tries < 25 && adj[pick].length < 3);
+        downIdx = pick;
+        nodes[pick].down = true;
+        nodes[pick].failFrame = frame;
+        ring(nodes[pick].x, nodes[pick].y, CORAL, 26);
+        repairFrame = frame + 210 + Math.floor(Math.random() * 90);
+      }
+      if (downIdx !== -1 && frame >= repairFrame) {
+        var nd = nodes[downIdx];
+        nd.down = false;
+        nd.repairFrame = frame;
+        ring(nd.x, nd.y, TEAL, 32);
+        downIdx = -1;
+        nextFailFrame = frame + 300 + Math.floor(Math.random() * 240);
+      }
+
+      // ── links
+      ctx.lineWidth = 0.8;
+      for (var e = 0; e < edges.length; e++) {
+        var a = nodes[edges[e][0]], b = nodes[edges[e][1]];
+        var broken = a.down || b.down;
+        var alpha = 0.22 * linkMult(a) * linkMult(b);
+        ctx.strokeStyle = 'rgba(' + (broken ? CORAL : INK) + ',' + alpha.toFixed(3) + ')';
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+
+      // ── event rings (break / repair / reroute pulses)
+      for (var ri = rings.length - 1; ri >= 0; ri--) {
+        var rg = rings[ri];
+        var t = (frame - rg.start) / 55;
+        if (t >= 1) { rings.splice(ri, 1); continue; }
+        ctx.strokeStyle = 'rgba(' + rg.color + ',' + ((1 - t) * 0.7).toFixed(3) + ')';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.arc(rg.x, rg.y, 3 + t * rg.max, 0, 6.283); ctx.stroke();
+      }
+      ctx.lineWidth = 0.8;
+
+      // ── nodes
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        if (n.down) {
+          var pulse = 0.6 + 0.35 * Math.sin((frame - n.failFrame) * 0.18);
+          ctx.fillStyle = 'rgba(' + CORAL + ',' + pulse.toFixed(3) + ')';
+          ctx.beginPath(); ctx.arc(n.x, n.y, n.r + 1.4, 0, 6.283); ctx.fill();
+          ctx.fillStyle = 'rgba(' + CORAL + ',0.18)';
+          ctx.beginPath(); ctx.arc(n.x, n.y, n.r + 7, 0, 6.283); ctx.fill();
+        } else if (frame - n.repairFrame < 60) {
+          // freshly repaired — teal glow easing back to normal
+          var heal = 1 - (frame - n.repairFrame) / 60;
+          ctx.fillStyle = 'rgba(' + TEAL + ',0.85)';
+          ctx.beginPath(); ctx.arc(n.x, n.y, n.r + 0.5, 0, 6.283); ctx.fill();
+          ctx.fillStyle = 'rgba(' + TEAL + ',' + (0.2 * heal).toFixed(3) + ')';
+          ctx.beginPath(); ctx.arc(n.x, n.y, n.r + 6, 0, 6.283); ctx.fill();
+        } else if (adj[i].length >= 5) {
+          // highly-connected hub — quiet teal accent
+          ctx.fillStyle = 'rgba(' + TEAL + ',0.7)';
+          ctx.beginPath(); ctx.arc(n.x, n.y, n.r + 0.4, 0, 6.283); ctx.fill();
+        } else {
+          ctx.fillStyle = 'rgba(' + INK + ',0.5)';
+          ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, 6.283); ctx.fill();
+        }
+      }
+
+      // ── packets
+      if (frame % 30 === 0 && packets.length < 10) spawnPacket();
+      for (var pi = packets.length - 1; pi >= 0; pi--) {
+        var p = packets[pi];
+        if (!p.queue.length) { packets.splice(pi, 1); continue; }
+
+        // next hop went down → reroute from the last safe node (U-turn)
+        if (nodes[p.queue[0]].down) {
+          var dest = p.queue[p.queue.length - 1];
+          var np = nodes[dest].down ? null : findPath(p.last, dest);
+          if (np) {
+            p.queue = np.slice(1);
+            p.flash = 30;
+            ring(p.x, p.y, TEAL, 14);
+          } else {
+            ring(p.x, p.y, CORAL, 10);
+            packets.splice(pi, 1);
+            continue;
+          }
+        }
+
+        var tg = nodes[p.queue[0]];
+        var dx = tg.x - p.x, dy = tg.y - p.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 2.2) {
+          p.last = p.queue.shift();
+          if (!p.queue.length) { packets.splice(pi, 1); continue; }
+        } else {
+          p.x += (dx / dist) * 1.4;
+          p.y += (dy / dist) * 1.4;
+        }
+
+        var glow = p.flash > 0 ? 0.35 : 0.2;
+        if (p.flash > 0) p.flash--;
+        ctx.fillStyle = 'rgba(' + TEAL + ',0.95)';
+        ctx.beginPath(); ctx.arc(p.x, p.y, 1.7, 0, 6.283); ctx.fill();
+        ctx.fillStyle = 'rgba(' + TEAL + ',' + glow + ')';
+        ctx.beginPath(); ctx.arc(p.x, p.y, 4.5, 0, 6.283); ctx.fill();
+      }
+    }
 
     function resize() {
       var rect = canvas.getBoundingClientRect();
       W = rect.width; H = rect.height;
       canvas.width = W * dpr; canvas.height = H * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var count = Math.max(14, Math.min(36, Math.floor((W * H) / 38000)));
-      nodes = [];
-      for (var i = 0; i < count; i++) {
-        nodes.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          vx: (Math.random() - 0.5) * 0.14,
-          vy: (Math.random() - 0.5) * 0.14,
-          r: 1.2 + Math.random() * 1.8,
-          hub: Math.random() < 0.18
-        });
-      }
-      packets = [];
-    }
-
-    function spawnPacket() {
-      if (!nodes.length) return;
-      var a = nodes[Math.floor(Math.random() * nodes.length)];
-      var best = null, bestD = Infinity;
-      for (var i = 0; i < nodes.length; i++) {
-        var n = nodes[i];
-        if (n === a) continue;
-        var dx = n.x - a.x, dy = n.y - a.y, d = dx * dx + dy * dy;
-        if (d < bestD && d < LINK_DIST * LINK_DIST) { bestD = d; best = n; }
-      }
-      if (best) packets.push({ a: a, b: best, t: 0, speed: 0.005 + Math.random() * 0.008 });
-    }
-
-    var frame = 0;
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-      frame++;
-
-      for (var i = 0; i < nodes.length; i++) {
-        var n = nodes[i];
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < -20) n.x = W + 20; if (n.x > W + 20) n.x = -20;
-        if (n.y < -20) n.y = H + 20; if (n.y > H + 20) n.y = -20;
-      }
-
-      ctx.lineWidth = 0.7;
-      for (i = 0; i < nodes.length; i++) {
-        for (var j = i + 1; j < nodes.length; j++) {
-          var a = nodes[i], b = nodes[j];
-          var dx = a.x - b.x, dy = a.y - b.y;
-          var dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < LINK_DIST) {
-            var alpha = (1 - dist / LINK_DIST) * 0.3;
-            ctx.strokeStyle = 'rgba(14, 79, 110,' + alpha.toFixed(3) + ')';
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      for (i = 0; i < nodes.length; i++) {
-        n = nodes[i];
-        if (n.hub) {
-          ctx.fillStyle = 'rgba(35, 181, 163, 0.85)';
-          ctx.beginPath(); ctx.arc(n.x, n.y, n.r + 0.6, 0, 6.283); ctx.fill();
-          ctx.fillStyle = 'rgba(35, 181, 163, 0.14)';
-          ctx.beginPath(); ctx.arc(n.x, n.y, n.r + 5, 0, 6.283); ctx.fill();
-        } else {
-          ctx.fillStyle = 'rgba(14, 79, 110, 0.5)';
-          ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, 6.283); ctx.fill();
-        }
-      }
-
-      if (frame % 55 === 0 && packets.length < 8) spawnPacket();
-      for (i = packets.length - 1; i >= 0; i--) {
-        var p = packets[i];
-        p.t += p.speed;
-        if (p.t >= 1) { packets.splice(i, 1); continue; }
-        var px = p.a.x + (p.b.x - p.a.x) * p.t;
-        var py = p.a.y + (p.b.y - p.a.y) * p.t;
-        ctx.fillStyle = 'rgba(35, 181, 163, 0.95)';
-        ctx.beginPath(); ctx.arc(px, py, 1.7, 0, 6.283); ctx.fill();
-        ctx.fillStyle = 'rgba(35, 181, 163, 0.2)';
-        ctx.beginPath(); ctx.arc(px, py, 4.5, 0, 6.283); ctx.fill();
-      }
+      buildMesh();
+      if (prefersReduced || !running) draw();
     }
 
     function loop() {
@@ -173,7 +315,7 @@
     var rT;
     window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(resize, 180); });
 
-    if (prefersReduced) { draw(); return; }
+    if (prefersReduced) return;
 
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
