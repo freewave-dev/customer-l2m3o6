@@ -61,6 +61,14 @@
 
   var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Hero NOC console — latency readout jitter (10–14 ms)
+  var nocLatency = document.querySelector('[data-noc-latency]');
+  if (nocLatency && !prefersReduced) {
+    setInterval(function () {
+      nocLatency.textContent = 10 + Math.floor(Math.random() * 5);
+    }, 1800);
+  }
+
   // Stat count-up on viewport enter.
   // Markup: <span data-count-up data-target="20" data-suffix="+" data-decimals="0">
   function animateCount(el) {
