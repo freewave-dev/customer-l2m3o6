@@ -21,10 +21,7 @@ Marketing site for Medical ANS (Advanced Network Solutions). Static HTML + CSS, 
 - **Email addresses** (`hello@`, `security@`, `careers@`, `privacy@`, `legal@`, `rfp@`, `accessibility@`) — confirm or alias to a real inbox
 
 ## Customer form wiring
-The contact form on `contact.html` posts to `#` and shows a client-side success state. To wire to the central Freewave endpoint, update the `<form>` to:
-```html
-<form action="https://freewave.dev/customer-form.php?id={customer_id}" method="post">
-```
+The contact form on `contact.html` is wired to the central Freewave endpoint (`https://freewave.dev/customer-form.php?id={customer_id}`) with `_form_type: Contact Form`. `main.js` submits it via fetch and shows an inline success/error banner.
 
 ## Local preview
 ```
