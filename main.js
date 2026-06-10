@@ -61,6 +61,132 @@
 
   var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Hero background — live network topology canvas.
+  // Drifting nodes, proximity edges, packets traveling between linked nodes.
+  // Light-theme palette; pauses off-screen; static single frame on reduced-motion.
+  (function () {
+    var canvas = document.getElementById('hero-net');
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var dpr = Math.min(2, window.devicePixelRatio || 1);
+    var W = 0, H = 0, nodes = [], packets = [], running = false, rafId = null;
+    var LINK_DIST = 180;
+
+    function resize() {
+      var rect = canvas.getBoundingClientRect();
+      W = rect.width; H = rect.height;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var count = Math.max(14, Math.min(36, Math.floor((W * H) / 38000)));
+      nodes = [];
+      for (var i = 0; i < count; i++) {
+        nodes.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.14,
+          vy: (Math.random() - 0.5) * 0.14,
+          r: 1.2 + Math.random() * 1.8,
+          hub: Math.random() < 0.18
+        });
+      }
+      packets = [];
+    }
+
+    function spawnPacket() {
+      if (!nodes.length) return;
+      var a = nodes[Math.floor(Math.random() * nodes.length)];
+      var best = null, bestD = Infinity;
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        if (n === a) continue;
+        var dx = n.x - a.x, dy = n.y - a.y, d = dx * dx + dy * dy;
+        if (d < bestD && d < LINK_DIST * LINK_DIST) { bestD = d; best = n; }
+      }
+      if (best) packets.push({ a: a, b: best, t: 0, speed: 0.005 + Math.random() * 0.008 });
+    }
+
+    var frame = 0;
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      frame++;
+
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < -20) n.x = W + 20; if (n.x > W + 20) n.x = -20;
+        if (n.y < -20) n.y = H + 20; if (n.y > H + 20) n.y = -20;
+      }
+
+      ctx.lineWidth = 0.7;
+      for (i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var a = nodes[i], b = nodes[j];
+          var dx = a.x - b.x, dy = a.y - b.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < LINK_DIST) {
+            var alpha = (1 - dist / LINK_DIST) * 0.3;
+            ctx.strokeStyle = 'rgba(14, 79, 110,' + alpha.toFixed(3) + ')';
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for (i = 0; i < nodes.length; i++) {
+        n = nodes[i];
+        if (n.hub) {
+          ctx.fillStyle = 'rgba(35, 181, 163, 0.85)';
+          ctx.beginPath(); ctx.arc(n.x, n.y, n.r + 0.6, 0, 6.283); ctx.fill();
+          ctx.fillStyle = 'rgba(35, 181, 163, 0.14)';
+          ctx.beginPath(); ctx.arc(n.x, n.y, n.r + 5, 0, 6.283); ctx.fill();
+        } else {
+          ctx.fillStyle = 'rgba(14, 79, 110, 0.5)';
+          ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, 6.283); ctx.fill();
+        }
+      }
+
+      if (frame % 55 === 0 && packets.length < 8) spawnPacket();
+      for (i = packets.length - 1; i >= 0; i--) {
+        var p = packets[i];
+        p.t += p.speed;
+        if (p.t >= 1) { packets.splice(i, 1); continue; }
+        var px = p.a.x + (p.b.x - p.a.x) * p.t;
+        var py = p.a.y + (p.b.y - p.a.y) * p.t;
+        ctx.fillStyle = 'rgba(35, 181, 163, 0.95)';
+        ctx.beginPath(); ctx.arc(px, py, 1.7, 0, 6.283); ctx.fill();
+        ctx.fillStyle = 'rgba(35, 181, 163, 0.2)';
+        ctx.beginPath(); ctx.arc(px, py, 4.5, 0, 6.283); ctx.fill();
+      }
+    }
+
+    function loop() {
+      if (!running) return;
+      draw();
+      rafId = requestAnimationFrame(loop);
+    }
+    function start() { if (!running) { running = true; rafId = requestAnimationFrame(loop); } }
+    function stop() { running = false; if (rafId) cancelAnimationFrame(rafId); }
+
+    resize();
+    var rT;
+    window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(resize, 180); });
+
+    if (prefersReduced) { draw(); return; }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { e.isIntersecting ? start() : stop(); });
+      }, { threshold: 0.05 }).observe(canvas);
+    } else {
+      start();
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { stop(); } else if (!prefersReduced) { start(); }
+    });
+  })();
+
   // Hero NOC console — latency readout jitter (10–14 ms)
   var nocLatency = document.querySelector('[data-noc-latency]');
   if (nocLatency && !prefersReduced) {

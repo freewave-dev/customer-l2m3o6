@@ -347,7 +347,9 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
   pointer-events: none;
   z-index: 0;
   opacity: 0.55;
+  background: radial-gradient(ellipse 60% 55% at 50% 38%, rgba(35, 181, 163, 0.07), transparent 70%);
 }
+.hero-bg canvas { display: block; width: 100%; height: 100%; }
 .hero-bg svg { width: 100%; height: 100%; }
 .hero-inner { position: relative; z-index: 1; }
 .hero-eyebrow {
@@ -1878,14 +1880,6 @@ section.tight { padding: clamp(3rem, 5vw, 4.5rem) 0; }
   .fade-in.d4 { animation-delay: 0.32s; }
   @keyframes fadeIn {
     to { opacity: 1; transform: translateY(0); }
-  }
-  .pulse-node { animation: pulse 4s ease-in-out infinite; transform-origin: center; }
-  .pulse-node.delay-1 { animation-delay: 0.8s; }
-  .pulse-node.delay-2 { animation-delay: 1.6s; }
-  .pulse-node.delay-3 { animation-delay: 2.4s; }
-  @keyframes pulse {
-    0%, 100% { opacity: 0.35; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.15); }
   }
 }
 
