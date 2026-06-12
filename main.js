@@ -30,6 +30,8 @@
   // Contact form — posts to central /customer-form.php; emails customer via Resend.
   var form = document.querySelector('form[data-contact]');
   if (form) {
+    var tsField = form.querySelector('input[name="_ts"]');
+    if (tsField) tsField.value = Date.now();
     var successBox = form.querySelector('[data-success]');
     var errorBox = form.querySelector('[data-error]');
     var errorText = form.querySelector('[data-error-text]');
