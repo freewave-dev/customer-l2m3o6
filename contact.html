@@ -22,6 +22,7 @@
 <link rel="icon" type="image/png" sizes="96x96" href="https://media.freewave.dev/l2m3o6/images/favicon-96.webp">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/styles.css">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
@@ -58,7 +59,7 @@
       <form data-contact action="https://freewave.dev/customer-form.php?id=e69aa9677175a7a8" method="post" novalidate>
         <input type="text" name="_website" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
         <input type="hidden" name="_ts" value="">
-        <input type="hidden" name="_form_type" value="Contact Form">
+        <input type="hidden" name="_form_type" value="contact-form">
         <div class="form-grid">
           <div class="field"><label for="name">Full name</label><input id="name" name="name" type="text" required autocomplete="name"></div>
           <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
@@ -95,6 +96,9 @@
           <div class="field field-full"><label for="message">What's on your mind?</label>
             <textarea id="message" name="message" placeholder="Audit finding, carrier renewal, 5G evaluation, IoMT visibility, multi-site rollout — start anywhere."></textarea>
             <span class="help">Free-form. Most useful: a sentence on what's prompting the call.</span>
+          </div>
+          <div class="field field-full" style="margin-top:0.5rem;margin-bottom:1rem;">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADoxzla-JPnTwbaK"></div>
           </div>
           <div class="field field-full" style="margin-top:0.5rem;">
             <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send to solutions engineering</button>
